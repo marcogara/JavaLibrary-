@@ -3,7 +3,7 @@
  * @author Marcogara
  *
  */
-public class HelloWorld {
+public class CopyArray {
 
 	public static void main(String[] args) {
 
