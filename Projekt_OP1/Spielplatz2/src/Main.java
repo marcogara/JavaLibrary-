@@ -3,6 +3,16 @@ public class Main {
 
 
     public static void main(String[] args) {
+
+
+        AusnahmeBehandlung ausnahme = new AusnahmeBehandlung();
+
+        System.out.println("Variable von Klasse AusnahmeBehandlung : " + ausnahme.sVonAussenAnsprechbat );
+
+
+
+
+
         // Press Alt+Eingabe with your caret at the highlighted text to see how
         // IntelliJ IDEA suggests fixing it.
         System.out.printf("Hello and welcome!");
