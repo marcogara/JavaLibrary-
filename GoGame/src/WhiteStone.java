@@ -1,4 +1,4 @@
-
+import java.util.Map;
 
 public class WhiteStone extends Stone {
 
@@ -14,7 +14,7 @@ public class WhiteStone extends Stone {
 
 
 
-    public static void positionWhiteStone(char x, int y)
+    public static int positionWhiteStone(char x, int y,MovesList movesList, int gameMapCounter)
     {
 
         // int moveMapIntValue=Board.getGameMapIntValue();
@@ -27,9 +27,15 @@ public class WhiteStone extends Stone {
         // System.out.println(yMove);
         Board.board[xMove-1][yMove-1] = 'O';
 
-        Board.setGameMapIntValue(+1);
+        gameMapCounter++;
 
-        Board.gameMap.put(moveMapStringValue,Board.getGameMapIntValue());
+        MovesList.movesList.put(moveMapStringValue,gameMapCounter);
+
+        // gameMap1.put(moveMapStringValue,gameMapCounter);  old
+
+
+
+        return gameMapCounter;
 
     }
 

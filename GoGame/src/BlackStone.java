@@ -1,11 +1,10 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.Map;
 
 public class BlackStone extends Stone {
 
     private stoneColor color;
 
-    public static void positionBlackStone(char x, int y) {
+    public static int positionBlackStone(char x, int y, MovesList movesList, int gameMapCounter) {
 
 
 
@@ -17,10 +16,16 @@ public class BlackStone extends Stone {
             // System.out.println(yMove);
             Board.board[xMove-1][yMove-1] = 'X';
 
-        // Board.setGameMapIntValue(+1);
-        Board.setGameMapIntValue(+1);
+            gameMapCounter++;
 
-        Board.gameMap.put(moveMapStringValue,Board.getGameMapIntValue());
+
+
+        MovesList.movesList.put(moveMapStringValue,gameMapCounter);
+
+        // gameMap1.put(moveMapStringValue,gameMapCounter);  old
+
+
+            return gameMapCounter;
         }
 
     public stoneColor getColor() {

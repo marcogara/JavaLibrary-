@@ -1,18 +1,15 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class GoGame {
 
     public static void main(String[] args) throws InterruptedException {
 
         int firstmove = 0;
-
-        // GameBoard board = new GameBoard();
+        int gameMapCounter= 0;
 
         Board gameTest = new Board(9,9);
-        Scanner scanner = new Scanner(System.in);
+
+        MovesList gameMap1 = new MovesList();
 
         HumanPlayer me = new HumanPlayer();
 
@@ -27,7 +24,7 @@ public class GoGame {
         do {
 
             // logic to make black move first
-            if (me.getPlayerColor() == StoneColor.stoneColor.BLACK)
+            if (me.getPlayerColor() == StoneColor.stoneColor.BLACK)          // I enter here only if I choose black
 
             {
                 while (me.isExitGame())
@@ -42,19 +39,21 @@ public class GoGame {
                 }
 
                 // System.out.println("  You are 'X' ");
-                me.askMoveHumanPlayer(me);
+                me.askMoveHumanPlayer(me,gameMap1,gameMapCounter);
+                gameMapCounter++;
+                // System.out.println("this is in GoGame  main "+ gameMap+ " "+gameMapCounter);                 // debug
                 me.setMyTurn(false);
 
                 if (!me.isExitGame())
                 {
-                    cp.askMoveComputerPlayer(cp);
-                    // for control of map Move
-                    System.out.println(Board.gameMap);
+                    cp.askMoveComputerPlayer(cp,gameMap1,gameMapCounter);
+                    gameMapCounter++;
+
+                    MovesList.getGameMap(gameMap1);
+                    // System.out.println(gameMap1);
 
                     me.setMyTurn(true);
-
                 }
-
             }
 
             if (me.getPlayerColor() == StoneColor.stoneColor.WHITE)
@@ -62,23 +61,19 @@ public class GoGame {
                 me.setPlayerColor(StoneColor.stoneColor.WHITE);
                 cp.setPlayerColor(StoneColor.stoneColor.BLACK);
                 // cp.setMyTurn(true);
-                cp.askMoveComputerPlayer(cp);
+                cp.askMoveComputerPlayer(cp, gameMap1, gameMapCounter);
                 // cp.setMyTurn(false);
                 System.out.println();
                 me.setMyTurn(true);
 
                 if (!me.isExitGame())
                 {
-                    me.askMoveHumanPlayer(me);
+                    me.askMoveHumanPlayer(me, gameMap1,gameMapCounter);
                     me.setMyTurn(false);
                 }
             }
 
         }        while (!me.isExitGame());
-
-
-
-
 
         // gameTest.printBoard();
 

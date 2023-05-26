@@ -7,36 +7,28 @@ public class Board {
 
     public static char[][] board; // GUI array to display the game
 
-    public static Map<String, Integer> gameMap ;
-    private static int gameMapIntValue = 0;
+    // public static Map<String, Integer> gameMap ;
+   //  private static int gameMapIntValue = 0;
 
-    public static int getGameMapIntValue() {
-        return gameMapIntValue;
-    }
+    // public static int getGameMapIntValue() {
+        // return gameMapIntValue;
+   //  }
 
-    public static void setGameMapIntValue(int gameMapIntValue) {
-        Board.gameMapIntValue = gameMapIntValue;
-    }
+    // public static void setGameMapIntValue(int gameMapIntValue) {
+      //   Board.gameMapIntValue = gameMapIntValue;
+    // }
 
-    public Map<String, Integer> getGameMap() {
-        return gameMap;
-    }
+    // public Map<String, Integer> getGameMap() {
+        // return gameMap;
+    // }
 
-    public void setGameMap(Map<String, Integer> gameMap) {
-        this.gameMap = gameMap;
-    }
+    // public void setGameMap(Map<String, Integer> gameMap) {
+       //  this.gameMap = gameMap;
+    // }
 
     public Board(int rows, int cols) {
         this.board = new char[rows][cols];
         fillUpGrid();
-
-        this.gameMap = new HashMap<>();
-        this.gameMap.put("___",gameMapIntValue);
-
-    }
-
-    public static void positionStone(StoneColor.stoneColor h, char xMove, int yMove) {
-
     }
 
     private void fillUpGrid() {

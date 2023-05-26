@@ -2,15 +2,12 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class HumanPlayer extends Player{
-
     ComputerPlayer cp ;
-
 
     public HumanPlayer()
     {
         this.setExitGame(false);
         this.setMyTurn(false);
-
 
     }
 
@@ -43,7 +40,7 @@ public class HumanPlayer extends Player{
 
         return getPlayerColor();
     }
-    public void askMoveHumanPlayer(HumanPlayer me) throws InterruptedException {
+    public void askMoveHumanPlayer(HumanPlayer me,MovesList movesList, int gameMapCounter) throws InterruptedException {
         // stoneColor humanPlayerColor = stoneColor.BLACK;
 
         char xMove = 'a';
@@ -94,9 +91,13 @@ public class HumanPlayer extends Player{
             // logic to select if player move black or white stone
 
             if (me.getPlayerColor() == stoneColor.BLACK)
-                BlackStone.positionBlackStone(xMove, yMove);
+            {
+                BlackStone.positionBlackStone(xMove, yMove, movesList,gameMapCounter);
+
+            }
+
             else {
-                WhiteStone.positionWhiteStone(xMove, yMove);
+                WhiteStone.positionWhiteStone(xMove, yMove,movesList,gameMapCounter);
             }
 
             Board.printBoard();
@@ -119,6 +120,8 @@ public class HumanPlayer extends Player{
 
         }
         else System.out.println("game over..");
+
+        // return gameMapCounter;
 
     }
     }

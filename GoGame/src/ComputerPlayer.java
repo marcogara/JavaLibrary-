@@ -1,3 +1,4 @@
+import java.util.Map;
 import java.util.Random;
 
 public class ComputerPlayer extends Player {
@@ -6,7 +7,7 @@ public class ComputerPlayer extends Player {
 
     }
 
-    public static void askMoveComputerPlayer(ComputerPlayer cp) throws InterruptedException {
+    public static void askMoveComputerPlayer(ComputerPlayer cp,MovesList movesList, int gameMapCounter) throws InterruptedException {
 
             // Thread.sleep(4000); // sleep for 4 second
 
@@ -23,11 +24,12 @@ public class ComputerPlayer extends Player {
 
             if (cp.getPlayerColor() == stoneColor.BLACK)
             {
-                BlackStone.positionBlackStone(xMove, yMove);
+                BlackStone.positionBlackStone(xMove, yMove, movesList, gameMapCounter);
+
             }
 
             else{
-                WhiteStone.positionWhiteStone(xMove, yMove);
+                WhiteStone.positionWhiteStone(xMove, yMove, movesList, gameMapCounter);
             }
 
             Board.printBoard();
@@ -45,7 +47,7 @@ public class ComputerPlayer extends Player {
             System.out.println(" computer is :     O");
             System.out.println();
         }
-
+        // return gameMapCounter;
         }
 
     public void assignColor(stoneColor stoneColor) {
