@@ -4,26 +4,48 @@ public class BlackStone extends Stone {
 
     private stoneColor color;
 
-    public static int positionBlackStone(char x, int y, MovesList movesList, int gameMapCounter) {
+    public static int positionBlackStone(int x,char y, MovesList movesList, int gameMapCounter) {
 
 
 
-            String moveMapStringValue = x+" "+y+" "+"X";
-
-            int yMove =Board.charToInt(x);
+            int xMove= x;
+            int yMove =Board.charToInt(y);
             // System.out.println(xMove);
-            int xMove= y;
+
             // System.out.println(yMove);
-            Board.board[xMove-1][yMove-1] = 'X';
+
+        // Old use for Board old type
+        //             Board.board[xMove-1][yMove-1] = 'X';
+
+        if (yMove == 1) {
+           //  if(xMove ==1 && yMove ==9)
+            Grid.gridTest[xMove-1][yMove-1] = " (#)";
+
+        }
+        else {
+
+            if(xMove ==1 && yMove !=1)
+                Grid.gridTest[xMove-1][yMove-1] = "‾(#)";
+
+            else {
+                if (xMove == 9)  Grid.gridTest[xMove-1][yMove-1] = "_(#)";
+
+                    else                Grid.gridTest[xMove-1][yMove-1] = "-(#)";
+
+            }
+
+        }
+
+        // System.out.println(xMove +" xMove ");     for debug
+        // System.out.println(yMove +" yMove ");     for debug
 
             gameMapCounter++;
 
+        String moveMapStringValue = y +" "+x +" "+"(#)";
 
+        MovesList.put(moveMapStringValue,gameMapCounter);     // encapsulation in class
 
-        MovesList.movesList.put(moveMapStringValue,gameMapCounter);
-
-        // gameMap1.put(moveMapStringValue,gameMapCounter);  old
-
+        // MovesList.movesList.put(moveMapStringValue,gameMapCounter);    function but not encapsulated
 
             return gameMapCounter;
         }

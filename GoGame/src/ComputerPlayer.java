@@ -1,5 +1,6 @@
-import java.util.Map;
+import java.util.InputMismatchException;
 import java.util.Random;
+import java.util.Scanner;
 
 public class ComputerPlayer extends Player {
 
@@ -9,44 +10,48 @@ public class ComputerPlayer extends Player {
 
     public static void askMoveComputerPlayer(ComputerPlayer cp,MovesList movesList, int gameMapCounter) throws InterruptedException {
 
+
+
+        char yMove = 'a';
+        int xMove = 0;
+
+
+        do{
+
+            Random random = new Random();
+            yMove = (char) (Math.random() * 9 + 'A');
+            // System.out.println(xMove);
+            xMove = random.nextInt(9) + 1;
             // Thread.sleep(4000); // sleep for 4 second
 
             // char xMove = 'a';
             // int yMove =0;
-            Random random = new Random();
-            char xMove = (char) (Math.random() * 9 + 'A');
 
-            // System.out.println(xMove);
-
-            int yMove = random.nextInt(9) + 1;
 
             // System.out.println(yMove);
 
-            if (cp.getPlayerColor() == stoneColor.BLACK)
-            {
-                BlackStone.positionBlackStone(xMove, yMove, movesList, gameMapCounter);
+            // logic to prove if the move is legal before placing the stone
+            String moveToCheck = yMove + " " + xMove + " " + "(#)";
+            String moveToCheck1 = yMove + " " + xMove + " " + "( )";
+            movesList.isLegalMove(moveToCheck, moveToCheck1);
 
-            }
-
-            else{
-                WhiteStone.positionWhiteStone(xMove, yMove, movesList, gameMapCounter);
-            }
-
-            Board.printBoard();
-            System.out.println();
+        } while (movesList.isLegalMove() == false);
 
         if (cp.getPlayerColor() == stoneColor.BLACK)
         {
-            System.out.println(" you are     :     O");
-            System.out.println(" computer is :     X");
-            System.out.println();
+            BlackStone.positionBlackStone(xMove, yMove, movesList, gameMapCounter);
+
         }
 
         else{
-            System.out.println(" you are     :     X");
-            System.out.println(" computer is :     O");
-            System.out.println();
+            WhiteStone.positionWhiteStone(xMove, yMove, movesList, gameMapCounter);
         }
+
+            // Board.printBoard(); Old board
+
+            Grid.printGridTest();
+            System.out.println();
+
         // return gameMapCounter;
         }
 
@@ -61,3 +66,45 @@ public class ComputerPlayer extends Player {
          System.out.println(" computer ist : "+ this.getPlayerColor());
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

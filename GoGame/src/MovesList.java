@@ -1,9 +1,9 @@
-import java.util.LinkedHashMap;
-import java.util.Map;
-
+import java.util.*;
 
 
 public class MovesList {
+
+    private static boolean legalMove;
 
     public static  Map<String, Integer> movesList ;
 
@@ -18,28 +18,60 @@ public class MovesList {
 
     public static void getGameMap(MovesList gameMap1) {
 
-        for (String key : movesList.keySet()) {
-            System.out.println(key + ": " + movesList.get(key));
+        // reverse the list to print in front the last move
+
+         List<Map.Entry<String, Integer>> list = new ArrayList<>(movesList.entrySet());
+        Collections.reverse(list);
+
+        System.out.println("Move list .. ");
+
+        for (Map.Entry<String, Integer> entry : list) {
+          System.out.print(" [ "+entry.getKey() + " : " + entry.getValue()+ " ] ");
+
+        // for (String key : movesList.keySet()) {      function but not in reverse
+
+          //   System.out.print(" [ "+ key + ": " + movesList.get(key)+ " ] ");    function but not in reverse
+
+            // System.out.println(movesList);    for debug
         }
 
-        // to reverse the order of the moves
-
-        //  List<Map.Entry<String, Integer>> list = new ArrayList<>(gameMap.entrySet());
-        // Collections.reverse(list);
-
-        // System.out.println("this is in GoGame  main: reverse ?  "+ gameMap+ " "+gameMapCounter);
-
-        // for (Map.Entry<String, Integer> entry : list) {
-        //  System.out.println(entry.getKey() + " -> " + entry.getValue());
-        // }
-
-        // return movesList;
     }
 
-    public void put(String moveMapStringValue, int gameMapCounter) {
+    public static void put(String moveMapStringValue, int gameMapCounter) {
 
-        this.movesList.put(moveMapStringValue,gameMapCounter);
+        movesList.put(moveMapStringValue,gameMapCounter);
     }
 
+
+    public boolean isLegalMove(String a, String b) {
+
+        if (movesList.containsKey(a)) {
+            System.out.println("Value " + a + " is present in the list.");
+            this.setLegalMove(false);
+        } else {
+            if (movesList.containsKey(b)) {
+                System.out.println("Value " + b + " is present in the list.");
+                this.setLegalMove(false);
+            } else{
+                System.out.println("Value " + a + " is not present in the list.");
+                this.setLegalMove(true);
+            }
+
+        }
+        return legalMove;
+    }
+    public boolean isLegalMove() {
+        return legalMove;
+    }
+
+    public void setLegalMove(boolean legalMove) {
+        this.legalMove = legalMove;
+    }
 
 }
+
+
+
+
+
+

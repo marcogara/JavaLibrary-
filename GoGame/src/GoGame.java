@@ -7,7 +7,11 @@ public class GoGame {
         int firstmove = 0;
         int gameMapCounter= 0;
 
-        Board gameTest = new Board(9,9);
+        Grid gridtest = new Grid(9,9);
+
+
+
+        // Board gameTest = new Board(9,9);                  old board
 
         MovesList gameMap1 = new MovesList();
 
@@ -34,7 +38,8 @@ public class GoGame {
                 me.setMyTurn(true);
                 if(firstmove == 0)
                 {
-                    gameTest.printBoard();
+                    gridtest.printGridTest(me);
+                    // gameTest.printBoard();
                     firstmove++;
                 }
 

@@ -40,89 +40,103 @@ public class HumanPlayer extends Player{
 
         return getPlayerColor();
     }
-    public void askMoveHumanPlayer(HumanPlayer me,MovesList movesList, int gameMapCounter) throws InterruptedException {
+
+    public void askMoveHumanPlayer(HumanPlayer me, MovesList movesList, int gameMapCounter) throws InterruptedException {
         // stoneColor humanPlayerColor = stoneColor.BLACK;
 
-        char xMove = 'a';
-        int yMove = 0;
+        char yMove = 'a';
+        int xMove = 0;
         Scanner scanner = new Scanner(System.in);
 
-        while (true) {
-            try {
-                System.out.println();
-                System.out.println("Play your move - give a letter first:                             exit the game with:  'q'");
-                xMove = scanner.next().charAt(0);
-
-                if (xMove >= 'a' && xMove <= 'i') { // check if input is valid\r
-                    break; // exit loop if valid input is received\r
-                } if (xMove == 'q') {
-                    me.setExitGame(true);
-                    break;
-                }
-                else {
-                    System.out.println("Invalid input. Please enter a single letter from A to I.");
-                    scanner.nextLine(); // clear buffer before next iteration of loop
-                }
-            } catch (InputMismatchException e) { // catch non-character inputs
-                System.out.println("Invalid input. Please enter a single letter.");
-                scanner.nextLine(); // clear buffer before next iteration of loop
-            }
-        }
-
-        if(me.isExitGame() == false)
-        {
+        do {
+            // ask for the letter
             while (true) {
                 try {
-                    System.out.println("give a Number now: ");
-                    yMove = scanner.nextInt();
-                    if (yMove >= 1 && yMove <= 9) { // check if input is valid\r
-                        break; // exit loop if valid input is received
-                    } else {
-                        System.out.println("Invalid input. Please enter a single number from 1 to 9.");
+                    System.out.println();
+                    System.out.println("Play your move - give a letter first:                             exit the game with:  'q'");
+                    yMove = scanner.next().charAt(0);
+                    yMove = Character.toUpperCase(yMove);
+
+                    if (yMove >= 'A' && yMove <= 'I') { // check if input is valid\r
+                        break; // exit loop if valid input is received\r
                     }
-                    scanner.nextLine(); // clear buffer before next iteration of looprn
-                } catch (
-                        InputMismatchException e) {                                                  // catch non-integer inputs for yMovern
-                    System.out.println("Invalid input. Please enter an integer for the number.");
-                    scanner.nextLine(); // clear buffer before next iteration of looprn
+                    if (yMove == 'q') {
+
+                        me.setExitGame(true);
+                        break;
+                    } else {
+                        System.out.println("Invalid input. Please enter a single letter from A to I.");
+                        scanner.nextLine(); // clear buffer before next iteration of loop
+                    }
+                } catch (InputMismatchException e) { // catch non-character inputs
+                    System.out.println("Invalid input. Please enter a single letter.");
+                    scanner.nextLine(); // clear buffer before next iteration of loop
                 }
             }
-
-            // logic to select if player move black or white stone
-
-            if (me.getPlayerColor() == stoneColor.BLACK)
-            {
-                BlackStone.positionBlackStone(xMove, yMove, movesList,gameMapCounter);
-
+            if (me.isExitGame() == true) {
+            System.out.println("game over..");
+            return;
             }
 
-            else {
-                WhiteStone.positionWhiteStone(xMove, yMove,movesList,gameMapCounter);
-            }
+                // ask for the number
+                while (true) {
+                    try {
+                        System.out.println("give a Number now: ");
+                        xMove = scanner.nextInt();
+                        if (xMove >= 1 && xMove <= 9) { // check if input is valid\r
+                            break; // exit loop if valid input is received
+                        } else {
+                            System.out.println("Invalid input. Please enter a single number from 1 to 9.");
+                        }
+                        scanner.nextLine(); // clear buffer before next iteration of looprn
+                    } catch (
+                            InputMismatchException e) {                                                  // catch non-integer inputs for yMovern
+                        System.out.println("Invalid input. Please enter an integer for the number.");
+                        scanner.nextLine(); // clear buffer before next iteration of looprn
+                    }
+                }
 
-            Board.printBoard();
-            System.out.println();
+                // logic to prove if the move is legal before placing the stone
+                String moveToCheck = yMove + " " + xMove + " " + "(#)";
+                String moveToCheck1 = yMove + " " + xMove + " " + "( )";
+                movesList.isLegalMove(moveToCheck, moveToCheck1);
 
-            System.out.println("Computer is thinking ... ");
+        } while (movesList.isLegalMove() == false);
 
-            Thread.sleep(8000); // sleep for 8 second
 
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println();
+                // logic to select if player move black or white stone
 
-        }
-        else System.out.println("game over..");
+                if (me.getPlayerColor() == stoneColor.BLACK) {
+                    BlackStone.positionBlackStone(xMove, yMove, movesList, gameMapCounter);
+
+                } else {
+                    WhiteStone.positionWhiteStone(xMove, yMove, movesList, gameMapCounter);
+                }
+
+                // Board.printBoard(); Old board
+
+                Grid.printGridTest(me);
+
+                System.out.println();
+
+                System.out.println("Computer is thinking ... ");
+
+                Thread.sleep(2000); // sleep for 8 second
+
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
 
         // return gameMapCounter;
 
     }
-    }
+}
+
 
