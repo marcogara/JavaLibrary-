@@ -1,51 +1,46 @@
 import javax.swing.JOptionPane;
 
-    public class validation {
+public class Validation {
 
-        static String password;
+    private static String password;
 
-        public static boolean IsValidInput(String s) {
-
-            boolean status = false;
-            char [] array = s.toCharArray();
-            int lower=0, upper=0, digits=0;
-
-            if (s.length() > 8)
-                status = true;
-
-            for ( int i = 0;  i < array.length; i++) {
-                if(Character.isDigit(array[i]))
-                    digits++;
-                if(Character.isLowerCase(array[i]))
-                    lower++;
-                if(Character.isUpperCase(array[i]))
-                    upper++;
-            }
-
-            if ( !(lower  > 0 ))
-                status = false;
-
-            if ( !(upper  > 0 ))
-                status = false;
-
-            if ( !(digits > 0 ))
-                status = false;
-
-            return status;
+    public static boolean isValidInput(String s) {
+        if (s.length() <= 8) {
+            return false;
         }
 
-        public static void  setPassword(String p) {
-            if (IsValidInput(p)) {
-                password = p;
-                JOptionPane.showMessageDialog( null, " Your Password is accepted -" + p);
-            }
+        boolean hasLower = false;
+        boolean hasUpper = false;
+        boolean hasDigit = false;
 
-            else {
-                password ="";
-                JOptionPane.showMessageDialog( null, " Your  Password is  not accepted -" + p);
+        for (char c : s.toCharArray()) {
+            if (Character.isLowerCase(c)) {
+                hasLower = true;
+            } else if (Character.isUpperCase(c)) {
+                hasUpper = true;
+            } else if (Character.isDigit(c)) {
+                hasDigit = true;
             }
         }
 
+        return hasLower && hasUpper && hasDigit;
     }
+
+    public static void setPassword(String p) {
+        if (isValidInput(p)) {
+            password = p;
+            JOptionPane.showMessageDialog(null, "Your password is accepted: " + p);
+        } else {
+            password = "";
+            JOptionPane.showMessageDialog(null, "Your password is not accepted: " + p);
+        }
+    }
+
+    public static void main(String[] args) {
+        String input = JOptionPane.showInputDialog("Enter a password:");
+        setPassword(input);
+    }
+}
+
 
 
