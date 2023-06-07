@@ -1,6 +1,6 @@
 import javax.swing.JOptionPane;
 
-public class Validation {
+public class PasswordValidator {
 
     private static final int MIN_PASSWORD_LENGTH = 8;
     private static final String REQUIRED_CHARACTER_TYPES = ".*[a-z].*[A-Z].*[0-9].*";
