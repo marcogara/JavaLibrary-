@@ -2,38 +2,29 @@ import javax.swing.JOptionPane;
 
 public class Validation {
 
+    private static final int MIN_PASSWORD_LENGTH = 8;
+    private static final String REQUIRED_CHARACTER_TYPES = ".*[a-z].*[A-Z].*[0-9].*";
     private static String password;
 
     public static boolean isValidInput(String s) {
-        if (s.length() <= 8) {
+        if (s.length() < MIN_PASSWORD_LENGTH) {
             return false;
         }
 
-        boolean hasLower = false;
-        boolean hasUpper = false;
-        boolean hasDigit = false;
-
-        for (char c : s.toCharArray()) {
-            if (Character.isLowerCase(c)) {
-                hasLower = true;
-            } else if (Character.isUpperCase(c)) {
-                hasUpper = true;
-            } else if (Character.isDigit(c)) {
-                hasDigit = true;
-            }
-        }
-
-        return hasLower && hasUpper && hasDigit;
+        return s.matches(REQUIRED_CHARACTER_TYPES);
     }
 
     public static void setPassword(String p) {
+        StringBuilder message = new StringBuilder();
         if (isValidInput(p)) {
             password = p;
-            JOptionPane.showMessageDialog(null, "Your password is accepted: " + p);
+            message.append("Your password is accepted: ").append(p);
         } else {
             password = "";
-            JOptionPane.showMessageDialog(null, "Your password is not accepted: " + p);
+            message.append("Your password is not accepted: ").append(p);
         }
+
+        JOptionPane.showMessageDialog(null, message.toString());
     }
 
     public static void main(String[] args) {
@@ -41,6 +32,7 @@ public class Validation {
         setPassword(input);
     }
 }
+
 
 
 
