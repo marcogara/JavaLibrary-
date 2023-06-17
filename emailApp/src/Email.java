@@ -1,35 +1,42 @@
+/*
+    This is an open.source code meant for educational purposes only not intended
+    for production use and may contain errors or bugs.
+    Feel free to modify and use it for personal learning or teaching purposes.
+    Not intended for distribution as a commercial product.
+    Thanks.
+*/
+
+import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
 
-//  https://www.youtube.com/watch?v=U3Ibvu0htNs
-
-public class Email {
+public class Email{
 
     private String mainEmailAddress;
     private String firstNameEmailOwner;
     private String lastNameEmailOwner;
     private String emailPassword;
-    private int mailBoxCapacity ;
+    private int mailBoxCapacity = 500 ;
     private String department;
     private String alternateEmailAddress;
 
-    // Constructor only with first and last name
-    public Email(String firstNameEmailOwner,String lastNameEmailOwners) {
+    private String companySuffix = "bestcompany.com";
+
+    public Email(String firstNameEmailOwner,String lastNameEmailOwner) {
 
         this.firstNameEmailOwner = firstNameEmailOwner;
+
         this.lastNameEmailOwner = lastNameEmailOwner;
+
         this.department = setDepartment();
 
-    }
-
-    // Constructor  with more fields ..
-    public Email(String mainEmailAddress, String firstNameEmailOwner,String lastNameEmailOwner, int mailBoxCapacity, String alternateEmailAddress) {
-        this.mainEmailAddress = mainEmailAddress;
-        this.firstNameEmailOwner = firstNameEmailOwner;
-        this.lastNameEmailOwner = lastNameEmailOwner;
+        // Call a method that return the Password
         this.emailPassword = generateEmailPassword();
-        this.mailBoxCapacity = mailBoxCapacity;
-        this.alternateEmailAddress = alternateEmailAddress;
+
+        // Combine Elements to generate Email
+        mainEmailAddress = firstNameEmailOwner.toLowerCase(Locale.ROOT) + "." + lastNameEmailOwner +"@"+department.toLowerCase(Locale.ROOT) +"."+ companySuffix;
+        System.out.println("Email address is : " + mainEmailAddress);
+
     }
 
     private String setDepartment()
@@ -70,7 +77,7 @@ public class Email {
 
     public String getAllEmailInfo()
     {
-        return  firstNameEmailOwner + " " + " " +  mainEmailAddress + " " + mainEmailAddress;
+        return  firstNameEmailOwner + " " + " " +  mainEmailAddress + " " + alternateEmailAddress + " " + mailBoxCapacity ;
     }
 
     // generate password ...
@@ -91,41 +98,4 @@ public class Email {
         return String.valueOf(emailPassword);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
