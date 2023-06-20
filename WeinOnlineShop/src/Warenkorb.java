@@ -6,12 +6,17 @@
     Thanks.
 */
 
+interface Versand {
+    double berechnenVersandKosten();
+}
+
 public class Warenkorb {
 
     private final Artikel[] artikelListe;
 
     private final int[] artikelAnzahl;
     private final int itemCounter = 0;
+    private Versand versand;
 
     public Warenkorb(int maxItems) {
         artikelListe = new Artikel[maxItems];
@@ -39,7 +44,7 @@ public class Warenkorb {
         }
     }
 
-    public double berechnenTotal() {
+    public double getBestellwert() {
 
         double tot = 0;
 
@@ -53,4 +58,80 @@ public class Warenkorb {
         return tot;
     }
 
+    public void setVersand(Versand versand) {
+        this.versand = versand;
+    }
+
+    public double getVersandKosten() {
+        return versand.berechnenVersandKosten();
+    }
+
 }
+
+class StandardLieferungen implements Versand {
+
+
+    @Override
+    public double berechnenVersandKosten() {
+
+        double kosten = 10.00;
+        return kosten;
+
+    }
+
+    class ExpressLieferungen implements Versand {
+
+
+        @Override
+        public double berechnenVersandKosten() {
+
+            double kosten = 20.00;
+            return kosten;
+
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
