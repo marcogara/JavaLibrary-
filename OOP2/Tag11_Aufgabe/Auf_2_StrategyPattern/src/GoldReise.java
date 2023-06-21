@@ -4,12 +4,12 @@ class GoldReise extends Reisen {
 
     public GoldReise(int grundpreis, LocalDateTime beginn, StornoAlgorithmus algortihm) {
         super(grundpreis, beginn);
-        setSotnoAlgortihm(algortihm);
+        setStornoAlgorithmus(algortihm);
     }
 
     @Override
     public double berechnenPreis() {
-        return getGrundPreis() * 1.75;
+        return super.getGrundpreis() * 1.75;
     }
 
 }

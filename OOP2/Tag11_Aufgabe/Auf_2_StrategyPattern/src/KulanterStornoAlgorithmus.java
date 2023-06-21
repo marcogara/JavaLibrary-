@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 class KulanterStornoAlgorithmus implements StornoAlgorithmus {
     @Override
     public double berechneStornierung(Reisen reise, LocalDateTime stornierungsDatum) {
-        long tageBisAbreise = Duration.between(LocalDateTime.now(), reise.getReisebeginn()).toDays();
+        long tageBisAbreise = Duration.between(LocalDateTime.now(), reise.getBeginn()).toDays();
         if (tageBisAbreise > 1) {
             return 0.25 * reise.berechnenPreis();
         } else {

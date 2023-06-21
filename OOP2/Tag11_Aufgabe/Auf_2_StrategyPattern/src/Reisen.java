@@ -7,11 +7,21 @@ import java.time.LocalDateTime;
 abstract class Reisen {
 
     private final int grundpreis;
+
+    public int getGrundpreis() {
+        return grundpreis;
+    }
+
+
+
     private final LocalDateTime beginn;
 
     // Reference to the current algorithm object.
     protected StornoAlgorithmus algorithm;
 
+    public LocalDateTime getBeginn() {
+        return beginn;
+    }
 
     public Reisen(int grundpreis, LocalDateTime beginn) {
         this.grundpreis = grundpreis;

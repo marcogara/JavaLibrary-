@@ -4,12 +4,12 @@ class BronzeReise extends Reisen {
 
     public BronzeReise(int grundpreis, LocalDateTime beginn, StornoAlgorithmus algortihm) {
         super(grundpreis, beginn);
-        setStonoAlgortihm(algortihm);
+        setStornoAlgorithmus(algortihm);
     }
 
     @Override
     public double berechnenPreis() {
-        return getGrundPreis() * 1.25;
+        return super.getGrundpreis() * 1.25;
     }
 
 }
