@@ -7,7 +7,7 @@
 */
 
 interface Versand {
-    double berechnenVersandKosten();
+    double berechnenVersandKosten(Warenkorb warenkorb);
 }
 
 public class Warenkorb {
@@ -19,6 +19,7 @@ public class Warenkorb {
     private Versand versand;
 
     public Warenkorb(int maxItems) {
+
         artikelListe = new Artikel[maxItems];
         artikelAnzahl = new int[maxItems];
     }
@@ -63,29 +64,33 @@ public class Warenkorb {
     }
 
     public double getVersandKosten() {
-        return versand.berechnenVersandKosten();
+        return versand.berechnenVersandKosten(this);
     }
 
 }
 
 class StandardLieferungen implements Versand {
 
-
     @Override
-    public double berechnenVersandKosten() {
+    public double berechnenVersandKosten(Warenkorb warenkorb) {
 
         double kosten = 10.00;
+        if (warenkorb.getBestellwert() >= 100)
+            kosten = 5;
+
         return kosten;
 
     }
 
     class ExpressLieferungen implements Versand {
 
-
         @Override
-        public double berechnenVersandKosten() {
+        public double berechnenVersandKosten(Warenkorb warenkorb) {
 
-            double kosten = 20.00;
+            double kosten = 15.00;
+            if (warenkorb.getBestellwert() >= 100)
+                kosten = 10;
+
             return kosten;
 
         }
