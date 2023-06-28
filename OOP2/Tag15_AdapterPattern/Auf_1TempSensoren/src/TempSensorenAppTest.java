@@ -30,7 +30,12 @@ public class TempSensorenAppTest {
             System.err.println("An error occurred while processing temperature data: " + e.getMessage());
         }
     }
-    
+
+
+    class Auto {
+
+    }
+
 }
 
 
