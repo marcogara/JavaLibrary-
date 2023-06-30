@@ -10,21 +10,7 @@ package rechnerTestForGUI;
 public class Main {
     public static void main(String[] args) {
 
-        RrechnerGUI = new RechnerGUI();
-/*
-        Rechner rechner = new Rechner();
-
-        rechner.frageUserFuerGrundrechenoperationen();
-
-        Scanner scanner = new Scanner(System.in);
-
-        rechner.frageUserFuerZahlen();
-        
-        // perform Operation
-        System.out.println(rechner.rechnen());
-
-
- */
+        RechnerGUI rechnerGUI = new RechnerGUI();
 
     }
 

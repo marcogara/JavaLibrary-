@@ -1,4 +1,4 @@
-import rechnerTestForGUI.Rechner;
+package rechnerTestForGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -68,17 +68,14 @@ public class RechnerGUI extends JFrame {
         btn_subtraktion.addActionListener(new OperationListener(Rechner.Operation.SUBTRACTION));
         btn_multiplikation.addActionListener(new OperationListener(Rechner.Operation.MULTIPLICATION));
         btn_division.addActionListener(new OperationListener(Rechner.Operation.DIVISION));
-        btn_equals.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    int input = getTxtInput();
-                    rechner.setZahl2(input);
-                    double result = rechner.calculate();
-                    setTxtInput(String.valueOf(result));
-                } catch (NumberFormatException ex) {
-                    zeigeError("Fehler: Du musst eine Zahl eingeben.");
-                }
+        btn_equals.addActionListener(e -> {
+            try {
+                int input = getTxtInput();
+                rechner.setZahl2(input);
+                double result = rechner.calculate();
+                setTxtInput(String.valueOf(result));
+            } catch (NumberFormatException ex) {
+                zeigeError("Fehler: Du musst eine Zahl eingeben.");
             }
         });
     }
