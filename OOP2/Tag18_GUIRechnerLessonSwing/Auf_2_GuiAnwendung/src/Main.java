@@ -37,84 +37,108 @@ public class Main {
 
     static class GUI {
 
-        private final JFrame calculatorFrame;
-        private JTextField txt_display;
-        private JPanel pnl_buttons;
+        private JFrame guiFrame;
 
         public GUI() {
-            this.calculatorFrame = new JFrame();
-            //			=> beim Schließen soll das Programm enden
-            this.calculatorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-            // Feste Werte im Quellcode ist ein Code Smell!
-            // Hier haben wir die pixel Werte Hardcodiert, Literale
-            // auch einfach Magic Number.
-            // 			=> die größe soll 500 x 500 sein
-            this.calculatorFrame.setPreferredSize(new Dimension(500, 500));
-            this.calculatorFrame.setMinimumSize(new Dimension(500, 500));
-
-            //          => größe darf nicht veränderbar sein
-            this.calculatorFrame.setResizable(false);
-            // 			=> ändere die Background-Farbe
-            this.calculatorFrame.getContentPane().setBackground(new Color(50, 168, 82));
-
-            // 			=> soll einen Titel haben
-            this.calculatorFrame.setTitle("HIER IST DER TITEL");
-
-            this.calculatorFrame.setVisible(true);
-            setDynamicLocation();
-            addMenu();
+            setupFrame();
+            setupMenu();
 
         }
 
-        private void addMenu() {
-            //             => 2 Menü Items
-            JMenu menu;
-            JMenuItem i1, i2;
+        private void setupFrame() {
+            this.guiFrame = new JFrame();
+            
+            //			=> beim Schließen soll das Programm enden
+            this.guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-            JMenuBar mb = new JMenuBar();
-            // Erstellen und Hinzufügen eines Borders zum Menu
-            Border border = BorderFactory.createLineBorder(Color.BLACK); // Erstellen des Borders mit schwarzer Linie
-            menu = new JMenu("Menu");
-            menu.setBorder(border); // Hinzufügen des Borders zum Menu
+            // 			=> die größe soll 500 x 500 sein
+            this.guiFrame.setPreferredSize(new Dimension(500, 500));
+            this.guiFrame.setMinimumSize(new Dimension(500, 500));
 
-            i1 = new JMenuItem("Item 1");
-            i2 = new JMenuItem("Item 2");
+            //          => größe darf nicht veränderbar sein
+            this.guiFrame.setResizable(false);
+            // 			=> ändere die Background-Farbe
+            this.guiFrame.getContentPane().setBackground(new Color(50, 168, 82));
 
-            // Add ActionListener to Item 1        => eines zum schließen des Programms
-            i1.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    System.exit(0); // Close program when Item 1 is clicked
-                }
-            });
-
-            // Set tooltip for EXIT menu items  => eines zum schließen des Programms
-            i1.setToolTipText("Schließen des Programms");
-            //             => eines zum Hinzufügen von einem Button
-            i2.setToolTipText("Hinzufügen Button");
-
-            menu.add(i1);
-            menu.add(i2);
-
-            mb.add(menu);
-            this.calculatorFrame.setJMenuBar(mb);
+            // 			=> soll einen Titel haben
+            this.guiFrame.setTitle("HIER IST DER TITEL");
+            this.guiFrame.setVisible(true);
+            setDynamicLocation();
         }
 
         private void setDynamicLocation() {
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-            int frameWidth = this.calculatorFrame.getWidth();
-            int frameHeight = this.calculatorFrame.getHeight();
+            int frameWidth = this.guiFrame.getWidth();
+            int frameHeight = this.guiFrame.getHeight();
 
             int x = (screenSize.width - frameWidth) / 2;
             int y = (screenSize.height - frameHeight) / 2;
 
-            this.calculatorFrame.setLocation(x, y);
+            this.guiFrame.setLocation(x, y);
         }
 
+        private void setupMenu() {
+            ActionListener exitListener = createExitListener();
+
+            JMenu menu = createMenuWithBorder("Menu");
+
+            JMenuItem item1 = createMenuItem("Item 1", new ActionListener[]{exitListener});
+            JMenuItem item2 = new JMenuItem("Item 2");
+
+            setTooltip(item1, "Schließen des Programms");
+            setTooltip(item2, "Hinzufügen Button");
+
+            menu.add(item1);
+            menu.add(item2);
+
+            JMenuBar menuBar = createMenuBar(menu);
+            this.guiFrame.setJMenuBar(menuBar);
+        }
+
+        private ActionListener createExitListener() {
+            return new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    System.exit(0); // Close program when Item 1 is clicked
+                }
+            };
+        }
+
+        private JMenu createMenuWithBorder(String label) {
+            JMenu menu = new JMenu(label);
+
+            Border border = BorderFactory.createLineBorder(Color.BLACK);
+            menu.setBorder(border);
+
+            return menu;
+        }
+
+        private JMenuItem createMenuItem(String label, ActionListener[] actionListeners) {
+            JMenuItem menuItem = new JMenuItem(label);
+
+            for (ActionListener listener : actionListeners) {
+                menuItem.addActionListener(listener);
+            }
+
+            return menuItem;
+        }
+
+        private void setTooltip(JComponent component, String tooltipText) {
+            component.setToolTipText(tooltipText);
+        }
+
+        private JMenuBar createMenuBar(JComponent... components) {
+            JMenuBar mb = new JMenuBar();
+
+            for (JComponent component : components) {
+                mb.add(component);
+            }
+
+            return mb;
+        }
 
     }
-
 
 }
 
