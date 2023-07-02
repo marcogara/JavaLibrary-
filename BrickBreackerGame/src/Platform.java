@@ -35,7 +35,7 @@ import java.awt.Graphics;
         }
 
         public void draw(Graphics g) {
-            g.setColor(Color.BLUE);
+            g.setColor(Color.DARK_GRAY);
             g.fillRect(x, y, width, height);
         }
     }

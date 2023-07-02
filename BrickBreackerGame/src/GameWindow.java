@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 public class GameWindow extends JFrame {
     private Ball ball;
+    private Platform platform;
 
     public GameWindow() {
         setTitle("Brick Breaker Game");
@@ -17,7 +18,8 @@ public class GameWindow extends JFrame {
         setLocationRelativeTo(null);
 
         // Create the ball
-        ball = new Ball(400, 300, 10);
+        ball = new Ball(400, 500, 10);
+        platform = new Platform(360,520,80,20);
 
     }
 
@@ -27,6 +29,7 @@ public class GameWindow extends JFrame {
 
         // Draw the ball
         ball.draw(g);
+        platform.draw(g);
     }
 
     public static void main(String[] args) {
