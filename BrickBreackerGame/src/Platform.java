@@ -1,4 +1,5 @@
-import java.awt.Color;
+
+    import java.awt.Color;
 import java.awt.Graphics;
 
     public class Platform {
@@ -39,5 +40,6 @@ import java.awt.Graphics;
             g.fillRect(x, y, width, height);
         }
     }
+
 
 
