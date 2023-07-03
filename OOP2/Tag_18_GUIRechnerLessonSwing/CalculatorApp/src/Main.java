@@ -1,3 +1,5 @@
+import controller.CalculatorController;
+import model.Calculator;
 import view.CalculatorView;
 
 import javax.swing.*;
@@ -22,7 +24,8 @@ public class Main {
          */
 
         // Alternative: wir implementieren runnable als Lambdaausdruck:
-        SwingUtilities.invokeLater(() -> new CalculatorView());
+        SwingUtilities.invokeLater(() -> new CalculatorController(new CalculatorView(), new Calculator()));
+
 
     }
 }
