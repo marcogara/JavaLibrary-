@@ -1,5 +1,7 @@
 import javax.swing.JFrame;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class GameWindow extends JFrame {
     private Ball ball;
@@ -22,6 +24,9 @@ public class GameWindow extends JFrame {
 
         Stage1BrickConfiguration brickConfig = new Stage1BrickConfiguration();
         bricks = brickConfig.createBricks();
+
+        addKeyListener(new PlatformMovementListener());
+        setFocusable(true);
     }
 
     private void createPlatform() {
@@ -58,7 +63,25 @@ public class GameWindow extends JFrame {
         }
 
     }
+    private class PlatformMovementListener extends KeyAdapter {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            int keyCode = e.getKeyCode();
+            int platformSpeed = 10; // Adjust the platform speed as needed
+
+            if (keyCode == KeyEvent.VK_LEFT) {
+                // Move the platform to the left
+                platform.moveLeft(platformSpeed);
+                repaint();
+            } else if (keyCode == KeyEvent.VK_RIGHT) {
+                // Move the platform to the right
+                platform.moveRight(platformSpeed);
+                repaint();
+            }
+        }
+    }
 }
+
 
 
 

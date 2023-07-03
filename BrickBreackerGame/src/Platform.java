@@ -1,8 +1,9 @@
 
-    import java.awt.Color;
+import java.awt.Color;
 import java.awt.Graphics;
 
     public class Platform {
+
         private int x;          // X position of the platform
         private int y;          // Y position of the platform
         private int width;      // Width of the platform
@@ -15,7 +16,11 @@ import java.awt.Graphics;
             this.height = height;
         }
 
-        public void move(int dx) {
+        public void moveLeft(int dx) {
+            x -= dx;
+        }
+        public void moveRight(int dx) {
+
             x += dx;
         }
 
