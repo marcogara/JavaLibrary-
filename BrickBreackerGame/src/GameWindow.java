@@ -19,67 +19,9 @@ public class GameWindow extends JFrame {
 
         createBall();
         createPlatform();
-        createBricks(new BrickCreationParameters(2, 6, 120, 20, 30, 60, 4));
 
-    }
-
-
-        /*
-        // Create the bricks
-        int rows = 2;
-        int cols = 6;
-        int brickWidth = 120;
-        int brickHeight = 20;
-        bricks = new Brick[rows * cols];
-
-        int startX = 30; // Starting X-coordinate of the first brick
-        int startY = 60; // Starting Y-coordinate of the first brick
-
-        int currentX = startX;
-        int currentY = startY;
-
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                int index = row * cols + col;
-                bricks[index] = new Brick(currentX, currentY, brickWidth, brickHeight);
-
-                // Update the X-coordinate for the next brick in the same row
-                currentX += brickWidth + 4; // Add some spacing between bricks
-            }
-
-            // Move to the next row and reset the X-coordinate
-            currentX = startX;
-            currentY += brickHeight + 4; // Add some spacing between rows
-
-         */
-
-    private void createBricks(BrickCreationParameters parameters) {
-        int rows = parameters.getRows();
-        int cols = parameters.getCols();
-        int brickWidth = parameters.getBrickWidth();
-        int brickHeight = parameters.getBrickHeight();
-        int startX = parameters.getStartX();
-        int startY = parameters.getStartY();
-        int spacing = parameters.getSpacing();
-
-        bricks = new Brick[rows * cols];
-
-        int currentX = startX;
-        int currentY = startY;
-
-        for (int row = 0; row < rows; row++) {
-            createBricksInRow(row, cols, brickWidth, brickHeight, currentX, currentY, spacing);
-            currentX = startX;
-            currentY += brickHeight + spacing; // Add some spacing between rows
-        }
-    }
-
-    private void createBricksInRow(int row, int cols, int brickWidth, int brickHeight, int startX, int startY, int spacing) {
-        for (int col = 0; col < cols; col++) {
-            int index = row * cols + col;
-            bricks[index] = new Brick(startX, startY, brickWidth, brickHeight);
-            startX += brickWidth + spacing; // Add some spacing between bricks
-        }
+        Stage1BrickConfiguration brickConfig = new Stage1BrickConfiguration();
+        bricks = brickConfig.createBricks();
     }
 
     private void createPlatform() {
@@ -110,16 +52,13 @@ public class GameWindow extends JFrame {
         platform.draw(g);
 
         // Draw the bricks
-        int rows = 2;
-        int cols = 6;
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                int index = row * cols + col;
-                bricks[index].draw(g);
-
-            }
+        for (Brick brick : bricks) {
+            brick.draw(g);
 
         }
+
     }
 }
+
+
 
