@@ -11,7 +11,7 @@ public class Main {
         // new CalculatorView();
 
         // Functional Interfac runnable hat nur eine abstrakte Methode.
-        // FÃ¼gt unsere Anwendung dem UI Thread hinzu. Die Anwendung wird aufgerufen, sobald alle Eventes der Event queue
+        // Fügt unsere Anwendung dem UI Thread hinzu. Die Anwendung wird aufgerufen, sobald alle Eventes der Event queue
         // abgearbeitet wurden.
         /*
         SwingUtilities.invokeLater(new Runnable() {
@@ -25,7 +25,6 @@ public class Main {
 
         // Alternative: wir implementieren runnable als Lambdaausdruck:
         SwingUtilities.invokeLater(() -> new CalculatorController(new CalculatorView(), new Calculator()));
-
 
     }
 }

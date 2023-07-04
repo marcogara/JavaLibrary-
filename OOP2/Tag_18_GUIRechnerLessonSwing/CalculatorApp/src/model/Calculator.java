@@ -8,8 +8,9 @@ public class Calculator {
         this.arithmeticStrategy = arithmeticStrategy;
     }
 
-    public void calculate(double firstNumber, double secondNumber) {
-        this.arithmeticStrategy.calculate(firstNumber, secondNumber);
+    public double calculate(double firstNumber, double secondNumber) {
+
+        return this.arithmeticStrategy.calculate(firstNumber, secondNumber);
     }
 
 }
