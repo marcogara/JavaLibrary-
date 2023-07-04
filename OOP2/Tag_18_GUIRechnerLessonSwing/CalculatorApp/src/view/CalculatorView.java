@@ -12,8 +12,6 @@ public class CalculatorView {
     private JButton[] numberButtons;
     private JButton btn_addition, btn_subtraction, btn_multiplication, btn_division, btn_equals, btn_separator, btn_delete, btn_clear;
     private JPanel pnl_buttons;
-    private JPanel pnl_display;
-    private JPanel pnl_function_buttons;
     private double firstNumber;
 
     public CalculatorView() {
@@ -170,8 +168,6 @@ public class CalculatorView {
 
         if (buffer != null)
             buffer += text;
-
-
         return buffer;
     }
 
@@ -191,6 +187,7 @@ public class CalculatorView {
     public void setArithmethicButtonClickListener(ActionListener arithmethicButtonClickListener) {
 
         this.btn_division.addActionListener(arithmethicButtonClickListener);
+        
         this.btn_multiplication.addActionListener(arithmethicButtonClickListener);
         this.btn_subtraction.addActionListener(arithmethicButtonClickListener);
         this.btn_addition.addActionListener(arithmethicButtonClickListener);

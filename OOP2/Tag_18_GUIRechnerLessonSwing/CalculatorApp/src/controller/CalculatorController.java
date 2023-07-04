@@ -3,6 +3,7 @@ package controller;
 import model.*;
 import view.CalculatorView;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -40,9 +41,10 @@ public class CalculatorController {
             if (e.getActionCommand().equals("/")) {
                 calculator.setArithmeticStrategy(new Division());
                 setFirstNumber();
+
             }
             if (e.getActionCommand().equals("*")) {
-                calculator.setArithmeticStrategy(new Moltiplication());
+                calculator.setArithmeticStrategy(new Multiplication());
                 setFirstNumber();
             }
             if (e.getActionCommand().equals("-")) {
@@ -61,14 +63,25 @@ public class CalculatorController {
 
                 try {
                     secondNumber = Double.parseDouble(inputBuffer2);
-                    calculatorView.clearDisplay();
+                    if (calculator.getArithmeticStrategy() instanceof Division && secondNumber == 0) {
+                        throw new ArithmeticException("Division by zero is not defined!");
+                    }
 
-                } catch (Exception ex) {
+                } catch (NumberFormatException ex) {
+
                     // TODO : Fehler Meldung generieren und zeigen id der View
+                    // Handle NumberFormatException here
                     ex.toString();
+
+                } catch (ArithmeticException ex) {
+                    // Handle ArithmeticException here
+                    JOptionPane.showMessageDialog(null, "Division by zero is not defined!", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
+                calculatorView.clearDisplay();
+
 
                 double result = calculator.calculate(calculatorView.getFirstNumber(), secondNumber);
+                // result = Math.round(result);
                 calculatorView.writeResultToDisplay(String.valueOf(result));
 
             }
@@ -76,3 +89,25 @@ public class CalculatorController {
         }
     }
 }
+
+
+
+/*
+                try {
+                    secondNumber = Double.parseDouble(inputBuffer2);
+                    if (secondNumber != 0) {
+
+                        calculatorView.clearDisplay();
+
+                    }
+
+
+                } catch (Exception ex) {
+
+                    ex.toString();
+                    // TODO: das muss aus der Model raus
+                    JOptionPane.showMessageDialog(null, "Teilen durch 0 ist nicht definiert!", "FEHLER", JOptionPane.ERROR_MESSAGE);
+
+                }
+
+ */
