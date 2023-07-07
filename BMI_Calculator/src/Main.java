@@ -1,8 +1,11 @@
+import javax.swing.*;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
 
+
+
+/*
         System.out.println("Hello and welcome!");
 
         System.out.println("Please enter your size in meter: (format ->  #,##) ...  ");
@@ -17,7 +20,20 @@ public class Main {
 
         System.out.println("your BMI is: "+ bmi.getBmi());
 
+
+ */
+        public static void main(String[] args) {
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    BodyMassGUI frame=new BodyMassGUI();
+                    frame.setVisible(true);
+                }
+            });
         }
 
 
     }
+
+
+
+
