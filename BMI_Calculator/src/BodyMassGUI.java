@@ -38,36 +38,32 @@ public class BodyMassGUI extends JFrame {
 
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int num1=Integer.parseInt(textField1.getText());
-                int num2=Integer.parseInt(textField2.getText());
-                int sum=num1+num2;
+                int num1 = Integer.parseInt(textField1.getText());
+                int num2 = Integer.parseInt(textField2.getText());
+                int sum = num1 + num2;
 
-                outputLabel.setText("Sum: "+sum);
+                outputLabel.setText("Sum: " + sum);
             }
 
         });
 
-        add(button,BorderLayout.CENTER);
+        add(button, BorderLayout.CENTER);
 
-        outputLabel=new JLabel();
-        add(outputLabel,BorderLayout.SOUTH);
+        outputLabel = new JLabel();
+        add(outputLabel, BorderLayout.SOUTH);
 
         setDynamicLocation();
     }
 
-
-
     private void setDynamicLocation() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        int frameWidth = panel.getWidth();
-        int frameHeight = panel.getHeight();
+        int frameWidth = getWidth();
+        int frameHeight = getHeight();
 
         int x = (screenSize.width - frameWidth) / 2;
         int y = (screenSize.height - frameHeight) / 2;
 
         setLocation(x, y);
     }
-
-
 }
