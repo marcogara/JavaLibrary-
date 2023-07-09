@@ -8,8 +8,7 @@ public class BodyMassGUI extends JFrame {
     private JTextField textField1;
     private JTextField textField2;
     private JButton button;
- private JTextField outputField;
-
+    private JTextField outputField;
 
     public BodyMassGUI() {
         setTitle("BMI Calculator");
@@ -38,16 +37,13 @@ public class BodyMassGUI extends JFrame {
         button = new JButton("Calculate");
         button.setPreferredSize(new Dimension(100, 50)); // Set the button size using hard-coded values
 
-
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 double num1 = Double.parseDouble(textField1.getText());
                 double num2 = Double.parseDouble(textField2.getText());
                 BodyMassCalculator bodyMassCalculator = new BodyMassCalculator(num1,num2);
-
                 outputField.setText("BMI : " + bodyMassCalculator.getBmi());
             }
-
         });
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -66,7 +62,6 @@ public class BodyMassGUI extends JFrame {
         setDynamicLocation();
     }
 
-
     private void setDynamicLocation() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -78,5 +73,4 @@ public class BodyMassGUI extends JFrame {
 
         setLocation(x, y);
     }
-
 }
