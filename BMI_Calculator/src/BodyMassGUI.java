@@ -8,10 +8,11 @@ public class BodyMassGUI extends JFrame {
     private JTextField textField1;
     private JTextField textField2;
     private JButton button;
-    private JLabel outputLabel;
+ private JTextField outputField;
+
 
     public BodyMassGUI() {
-        setTitle("Simple Panel");
+        setTitle("BMI Calculator");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 200);
         setLayout(new BorderLayout());
@@ -20,11 +21,11 @@ public class BodyMassGUI extends JFrame {
         panel = new JPanel();
         panel.setLayout(new FlowLayout());
 
-        JLabel label1 = new JLabel("Input 1:");
-        textField1 = new JTextField(10);
+        JLabel label1 = new JLabel("Size in m (#.##):");
+        textField1 = new JTextField(4);
 
-        JLabel label2 = new JLabel("Input 2:");
-        textField2 = new JTextField(10);
+        JLabel label2 = new JLabel("Weight in Kg (##.#):");
+        textField2 = new JTextField(4);
 
         panel.add(label1);
         panel.add(textField1);
@@ -35,25 +36,36 @@ public class BodyMassGUI extends JFrame {
         add(panel, BorderLayout.NORTH);
 
         button = new JButton("Calculate");
+        button.setPreferredSize(new Dimension(100, 50)); // Set the button size using hard-coded values
+
 
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int num1 = Integer.parseInt(textField1.getText());
-                int num2 = Integer.parseInt(textField2.getText());
-                int sum = num1 + num2;
+                double num1 = Double.parseDouble(textField1.getText());
+                double num2 = Double.parseDouble(textField2.getText());
+                BodyMassCalculator bodyMassCalculator = new BodyMassCalculator(num1,num2);
 
-                outputLabel.setText("Sum: " + sum);
+                outputField.setText("BMI : " + bodyMassCalculator.getBmi());
             }
 
         });
 
-        add(button, BorderLayout.CENTER);
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(button);
 
-        outputLabel = new JLabel();
-        add(outputLabel, BorderLayout.SOUTH);
+        add(buttonPanel, BorderLayout.CENTER);
+
+        outputField = new JTextField(20);
+        outputField.setPreferredSize(new Dimension(40, 60));
+        outputField.setEditable(false);
+        JPanel outputPanel = new JPanel(new FlowLayout());
+        outputPanel.add(outputField);
+
+        add(outputPanel, BorderLayout.SOUTH);
 
         setDynamicLocation();
     }
+
 
     private void setDynamicLocation() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -66,4 +78,5 @@ public class BodyMassGUI extends JFrame {
 
         setLocation(x, y);
     }
+
 }
