@@ -1,13 +1,14 @@
-# 📚 Code Templates for Beginner Java Developers
+# JavaLibrary- 📚
 
-Welcome to the Code Templates repository for beginner Java developers! 🌟
+### Code Templates for Beginner Java Developers 💻
+
+Welcome to the JavaLibrary- repository for beginner Java developers! 🌟
 
 This repository is designed to foster interaction and collaboration among beginners, aiming to improve code quality and understanding. It provides a collection of code templates that serve as starting points for various Java projects.
 
 ## 📝 How to Use
 
-1. Clone the repository to your local machine using the command:
-git clone <https://github.com/marcogara/JavaLibrary->
+1. Clone the repository to your local machine using the command: `git clone https://github.com/marcogara/JavaLibrary-`
 
 2. Explore the different directories within the repository to find code templates for specific projects or concepts.
 
@@ -35,4 +36,4 @@ Please adhere to our Code of Conduct when participating in this repository. Be r
 
 The code templates provided here are for educational purposes and may not represent production-ready solutions. They are meant to serve as starting points for beginners to explore and build upon. Feel free to modify and improve them as you see fit.
 
-## 🚀Copy and don't forget to make improvements🚀
+## 🚀 Copy and don't forget to make improvements! 🚀
