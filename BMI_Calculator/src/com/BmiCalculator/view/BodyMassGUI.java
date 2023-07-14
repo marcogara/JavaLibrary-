@@ -1,10 +1,7 @@
 package com.BmiCalculator.view;
 
-import com.BmiCalculator.model.BodyMassCalculator;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BodyMassGUI extends JFrame {
@@ -41,15 +38,6 @@ public class BodyMassGUI extends JFrame {
         button = new JButton("Calculate");
         button.setPreferredSize(new Dimension(100, 50)); // Set the button size using hard-coded values
 
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                double num1 = Double.parseDouble(textField1.getText());
-                double num2 = Double.parseDouble(textField2.getText());
-                BodyMassCalculator bodyMassCalculator = new BodyMassCalculator(num1,num2);
-                outputField.setText("BMI : " + bodyMassCalculator.getBmi());
-            }
-        });
-
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.add(button);
 
@@ -76,5 +64,28 @@ public class BodyMassGUI extends JFrame {
         int y = (screenSize.height - frameHeight) / 2;
 
         setLocation(x, y);
+    }
+
+    public void setButtonClickListener(ActionListener actionListener) {
+        this.button.addActionListener(actionListener);
+    }
+
+    public JTextField getTextField1() {
+        return textField1;
+    }
+
+    public JTextField getTextField2() {
+        return textField2;
+    }
+
+    public void setOutputField(String s) {
+        this.outputField.setText(s);
+        this.outputField.setFont(new Font("Arial", Font.BOLD, 24)); // Set the font size
+        this.outputField.setHorizontalAlignment(JTextField.CENTER);
+        this.outputField.setText(s);
+    }
+
+    public JButton getButton() {
+        return button;
     }
 }

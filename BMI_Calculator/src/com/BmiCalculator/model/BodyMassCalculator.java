@@ -5,17 +5,13 @@ public class BodyMassCalculator {
     private double gewicht;
     private double bmi;
 
-    public BodyMassCalculator(double size, double weight) {
-        groesse = size;
-        gewicht = weight;
-        setBmi();
-    }
-
-    public void setBmi() {
-        bmi = gewicht / (groesse * groesse);
+    public void setBmi(double groesse, double gewicht) {
+        this.groesse = groesse;
+        this.gewicht = gewicht;
+        this.bmi = Math.round((this.gewicht / (this.groesse * this.groesse)) * 100.0) /100.0 ;
     }
 
     public double getBmi() {
-        return bmi;
+        return this.bmi;
     }
 }
