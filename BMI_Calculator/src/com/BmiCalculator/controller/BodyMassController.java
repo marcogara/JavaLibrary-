@@ -20,7 +20,7 @@ public class BodyMassController {
         view.setButtonClickListener(new ButtonClickListener());
 
         // Add key listener to the button
-        view.getButton().addKeyListener(new EnterKeyListener());
+        view.getCalculateButton().addKeyListener(new EnterKeyListener());
 
         view.getTextField2().addKeyListener(new EnterKeyListener());
     }

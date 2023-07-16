@@ -5,53 +5,71 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class BodyMassGUI extends JFrame {
-    private JPanel panel;
+
+    private final int DEFAULT_WINDOW_WIDTH = 600;
+    private final int DEFAULT_WINDOW_HEIGHT = 200;
+
+    private JPanel inputPanel;
     private JTextField textField1;
     private JTextField textField2;
-    private JButton button;
+    private JLabel heightLabel;
+    private JLabel weightLabel;
+
+    private JPanel buttonPanel;
+    private JButton calculateButton;
+
+    private JPanel outputPanel;
     private JTextField outputField;
 
     public BodyMassGUI() {
-        setTitle("BMI Calculator");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 200);
-        setLayout(new BorderLayout());
 
-        // Create the input panel
-        panel = new JPanel();
-        panel.setLayout(new FlowLayout());
+        setWindow();
+        setComponents();
+        setPanels();
 
-        JLabel label1 = new JLabel("Size in m (#.##):");
-        textField1 = new JTextField(4);
+        addToPanel(inputPanel, heightLabel, textField1, weightLabel, textField2);
+        addToPanel(buttonPanel, calculateButton);
+        addToPanel(outputPanel, outputField);
 
-        JLabel label2 = new JLabel("Weight in Kg (##.#):");
-        textField2 = new JTextField(4);
-
-        panel.add(label1);
-        panel.add(textField1);
-
-        panel.add(label2);
-        panel.add(textField2);
-
-        add(panel, BorderLayout.NORTH);
-
-        button = new JButton("Calculate");
-        button.setPreferredSize(new Dimension(100, 50)); // Set the button size using hard-coded values
-
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        buttonPanel.add(button);
-
+        add(inputPanel, BorderLayout.NORTH);
         add(buttonPanel, BorderLayout.CENTER);
+        add(outputPanel, BorderLayout.SOUTH);
+
+        setDynamicLocation();
+    }
+
+    private void setPanels() {
+        inputPanel = new JPanel(new FlowLayout());
+        outputPanel = new JPanel(new FlowLayout());
+        buttonPanel = new JPanel(new FlowLayout());
+    }
+
+    private void setComponents() {
+        textField1 = new JTextField(4);
+        textField2 = new JTextField(4);
+        heightLabel = new JLabel("Height in m (#.##):");
+        weightLabel = new JLabel("Weight in Kg (##.#):");
+
+        calculateButton = new JButton("Calculate");
+        calculateButton.setPreferredSize(new Dimension(100, 50)); // Set the button size using
+                                                                  // hard-coded values
 
         outputField = new JTextField(20);
         outputField.setPreferredSize(new Dimension(40, 60));
         outputField.setEditable(false);
-        JPanel outputPanel = new JPanel(new FlowLayout());
-        outputPanel.add(outputField);
+    }
 
-        add(outputPanel, BorderLayout.SOUTH);
+    private void addToPanel(JPanel panel, JComponent... components) {
+        for (JComponent component : components) {
+            panel.add(component);
+        }
+    }
 
-        setDynamicLocation();
+    private void setWindow() {
+        setTitle("BMI Calculator");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT);
+        setLayout(new BorderLayout());
     }
 
     private void setDynamicLocation() {
@@ -67,7 +85,7 @@ public class BodyMassGUI extends JFrame {
     }
 
     public void setButtonClickListener(ActionListener actionListener) {
-        this.button.addActionListener(actionListener);
+        this.calculateButton.addActionListener(actionListener);
     }
 
     public JTextField getTextField1() {
@@ -79,13 +97,13 @@ public class BodyMassGUI extends JFrame {
     }
 
     public void setOutputField(String s) {
-        this.outputField.setText(s);
-        this.outputField.setFont(new Font("Arial", Font.BOLD, 24)); // Set the font size
-        this.outputField.setHorizontalAlignment(JTextField.CENTER);
-        this.outputField.setText(s);
+        outputField.setText(s);
+        outputField.setFont(new Font("Arial", Font.BOLD, 24)); // Set the font size
+        outputField.setHorizontalAlignment(JTextField.CENTER);
+        outputField.setText(s);
     }
 
-    public JButton getButton() {
-        return button;
+    public JButton getCalculateButton() {
+        return calculateButton;
     }
 }
