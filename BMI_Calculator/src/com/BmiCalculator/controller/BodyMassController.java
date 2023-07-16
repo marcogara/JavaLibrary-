@@ -32,7 +32,7 @@ public class BodyMassController {
         }
     }
 
-    class EnterKeyListener extends java.awt.event.KeyAdapter {
+    class EnterKeyListener extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
