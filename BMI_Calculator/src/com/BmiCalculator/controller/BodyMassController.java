@@ -20,7 +20,7 @@ public class BodyMassController {
         view.setButtonClickListener(new ButtonClickListener());
 
         // Add key listener to the button
-        view.getButton().addKeyListener(new EnterKeyListener());
+        view.getCalculateButton().addKeyListener(new EnterKeyListener());
 
         view.getTextField2().addKeyListener(new EnterKeyListener());
     }
@@ -32,7 +32,7 @@ public class BodyMassController {
         }
     }
 
-    class EnterKeyListener extends java.awt.event.KeyAdapter {
+    class EnterKeyListener extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
