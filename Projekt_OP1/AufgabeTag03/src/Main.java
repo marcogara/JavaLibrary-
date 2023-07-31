@@ -13,8 +13,6 @@ public class Main {
         HuderteTueren spiel = new HuderteTueren();
 
         HuderteTueren.spiel();
-
-
         }
     }
 
