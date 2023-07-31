@@ -1,5 +1,4 @@
 public class HuderteTueren {
-
     /*
     AUFGABE 4 (schwer):
 Ein Eroberer nahm bei einem Feldzug 100 Gegner in Haft, die er in 100 Einzelzellen sperren ließ.
@@ -11,15 +10,11 @@ Allerdings will er nicht alle Gegner freilassen und fragt deswegen seinen Hofber
    weiter so bis zum 100. Durchgang.
 Wie viele Türen (nach dem 100.Durchgang) stehen offen und welches sind ihre Türnummern. Beachte bitte,
  dass die Nummerierung der Türen natürlich bei 1 und bei 100 endet.
-
-
      */
-
 
     public static void spiel() {
 
     boolean [] tueren = new boolean[100]; // true ist offen
-
         // Alle Türen öffnen
         for (int i = 0 ; i < tueren.length;i ++)
             tueren[i]=true;
@@ -34,11 +29,8 @@ Wie viele Türen (nach dem 100.Durchgang) stehen offen und welches sind ihre Tü
               else tueren[n] = true;
           }
 
-          
         for (int i = 1; i <= tueren.length; i++) {
-
             System.out.print( " [ " + i + " / "+  tueren[i] + " ] " );
-
         }
     }
 }
