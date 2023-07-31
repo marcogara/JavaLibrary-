@@ -33,46 +33,32 @@ public class Taschenrechner {
                     ;
                     break;
             }
-
         }while (auswahl > 5 || auswahl < 0);
-
-        // System.out.println("Auswahl ist: " + auswahl);
     }
 
     private static void div2(int a, int b) {
-
         fragtzweiteZahl();
         if (b == 0) System.out.println("Kann nicht geteilt durch 0");
         else {
             int mol = a / fragtzweiteZahl();
             System.out.println("Das Ergebniss lautet: "+mol);
         }
-
     }
 
     private static void mol(int a, int b) {
-
         int mol = a * fragtzweiteZahl();
         System.out.println("Das Ergebniss lautet: "+mol);
     }
 
     private static void min2(int a, int b) {
-
         int min = a - fragtzweiteZahl();
         System.out.println("Das Ergebniss lautet: "+min);
 
     }
 
     private static void sum2(int a, int b ) {
-
-        // fragtzweiteZahl(b);
-
         int sum = a + fragtzweiteZahl();
-
-        // System.out.println("zweite zahl ist: "+ fragtzweiteZahl(b));
-
         System.out.println("Das Ergebnis lautet: "+sum);
-
     }
 
     private static int fragtzweiteZahl() {
@@ -82,6 +68,4 @@ public class Taschenrechner {
 
         return c;
     }
-
-
 }
