@@ -1,4 +1,3 @@
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.sql.*;
@@ -73,5 +72,4 @@ public class BinaryData
             return false;
         }
     }
-
 }
