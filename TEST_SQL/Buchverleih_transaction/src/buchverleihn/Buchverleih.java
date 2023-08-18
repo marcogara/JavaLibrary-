@@ -73,7 +73,7 @@ public class Buchverleih {
         PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM ausleihe WHERE id = ?;"))
         {
             preparedStatement.setInt(1,id);
-            if ( preparedStatement.executeUpdate() != 1)
+            if (preparedStatement.executeUpdate() != 1)
             {
                 return true;
             }
@@ -103,6 +103,7 @@ public class Buchverleih {
                     preparedStatement.setInt(4,dauer);
                     if(preparedStatement.executeUpdate()!=1)
                     {
+
                         connection.rollback();
                         return null;
                     }
