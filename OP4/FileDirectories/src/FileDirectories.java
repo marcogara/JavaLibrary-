@@ -11,16 +11,17 @@ public class FileDirectories
         // Der Pfad muss angepasst werden, falls der Ordner "resources" nicht existiert
         // Hinweis: Unter Run - Edit Configuration -> Edit Configuration Template -> Application -> Working Directory -> $MODULE_WORKING_DIR$
 
-        createFile("resources" + File.separator + "FilesAndDirectories.txt");
-        delete("resources" + File.separator + "FilesAndDirectories.txt");
+        // createFile("resources" + File.separator + "FilesAndDirectories.txt");
+        // delete("resources" + File.separator + "FilesAndDirectories.txt");
 
-        System.out.println("File Separator is: " + File.separator);
+        // System.out.println("File Separator is: " + File.separator);
 
         // Ermitteln des Working Directories
-        String userDir = System.getProperty("user.dir");
-        System.out.println(userDir);
+        // String userDir = System.getProperty("user.dir");
 
-        // System.getProperties().list(System.out); //-> gibt die ganzen Properties aus
+        // System.out.println("Working directory is: " + userDir);
+
+        System.getProperties().list(System.out); //-> gibt die ganzen Properties aus
 
         System.out.println(System.getProperty("user.home"));
 
@@ -70,7 +71,6 @@ public class FileDirectories
             }
         }
 
-
     private static void functions(String path){
         try
         {
@@ -99,8 +99,6 @@ public class FileDirectories
 
             f.setWritable(true);
             System.out.println(f.canWrite());
-
-
 
         } catch (Exception e){
             e.printStackTrace();
