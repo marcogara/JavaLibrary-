@@ -2,3 +2,9 @@
   MyStreams2 class is responsible for reading files from the resources folder.
   The resources folder should be set as a source directory and marked as Resources
   in the project structure of IntelliJ or any other IDE being used.
+
+
+
+  In order to correctly access resource files within the project, please ensure that the resources folder is set as a source directory and marked as Resources in IntelliJ IDEA. This can be done by following these steps:
+  1. Right-click on the resources folder.
+  2. Select "Mark Directory" -> "As Sources Root".

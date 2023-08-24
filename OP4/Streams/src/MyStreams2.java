@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 /**
  * This class is responsible for reading files from the resources folder.
  * The resources folder should be set as a source directory and marked as Resources
- * in the project structure of IntelliJ or any other IDE being used.
+ * in the project structure of IntelliJ or any other IDE being used. -> README file
  */
 
 public class MyStreams2 {
