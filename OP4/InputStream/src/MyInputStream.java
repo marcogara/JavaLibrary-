@@ -49,7 +49,6 @@ public class MyInputStream {
         return new String(daten, StandardCharsets.UTF_8);
     }
 
-
     private static String scannerToString(Path file) throws IOException{
         StringBuilder sb = new StringBuilder();
 
