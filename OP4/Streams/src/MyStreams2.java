@@ -22,8 +22,8 @@ public class MyStreams2 {
         // System.out.println(createDataForFile());
 
         //Erstellung einer Dummy-Datei
-        writeDataToFile(createDataForFile());
-        System.out.println(toStringFromFile());
+        saveDataToFile(generateDummyData());
+        System.out.println(readFileToString());
 
     }
 
@@ -33,10 +33,10 @@ public class MyStreams2 {
     // Unterschied: Builder ist performanter, der Buffer hingegen Thread-sicher
 
     /**
-     *
+     * Renamed method to generate dummy data for file
      * @return String aus den sb
      */
-    private static String createDataForFile(){
+    private static String generateDummyData(){
 
         StringBuilder sb = new StringBuilder();
 
@@ -55,11 +55,11 @@ public class MyStreams2 {
     }
 
     /**
+     * Renamed method to save data into a file
      * Schreibt Dummy-daten mit einem IO Stream in eine Datei
      * @param data
      */
-
-    private static void writeDataToFile(String data) {
+    private static void saveDataToFile(String data) {
         // Der Konstruktor ist überladen - man kann ihm direkt den Pfad oder ein file-Objekt übergeben
         //Letzteres macht Sinn, wenn ich in meinem Programm die Methoden der File Klasse neben
         // der Dateierzeugung wie zum Beispiel getParentDirectory() nutzen möchte
@@ -71,7 +71,15 @@ public class MyStreams2 {
         }
     }
 
-        private static String toStringFromFile() throws Exception {
+
+    /**
+     * Renamed method to read file contents into a string
+     *
+     * @return The contents of the file as a string.
+     * @throws Exception If an error occurs while reading the file.
+     */
+
+        private static String readFileToString() throws Exception {
             // zetcode.com/java/readtext/
 
             try(InputStream in = MyStreams2.class.getResourceAsStream("/FileStream.txt");
@@ -81,7 +89,12 @@ public class MyStreams2 {
         }
     }
 
-    private static List<String> toListFromFile() throws Exception {
+    /**
+     * Renamed method to read file contents into a list of strings
+     * @return
+     * @throws Exception
+     */
+    private static List<String> readFileToList() throws Exception {
 
         //Seit java8 verfügt Filers über die line()-Methode, mit der wir
         // zeilenweise per Stream die Datei auslesen können
