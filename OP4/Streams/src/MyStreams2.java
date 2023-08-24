@@ -114,7 +114,7 @@ public class MyStreams2 {
         // Variante 2
             // Read lines from the file using Files.lines() since Java 8
             try (Stream<String> stream = Files.lines(Paths.get(url.toURI()))) {
-                // Collect stream elements into a list using Collectors.toList() introduced in Java 8
+                // Collect stream elements into a list using Collectors.toList()
                 List<String> liste = stream.collect(Collectors.toList());
                 return liste;
             }
