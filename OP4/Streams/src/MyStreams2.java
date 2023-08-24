@@ -15,6 +15,12 @@ import java.util.stream.Stream;
  *  In diesem Thema heute geht es aber um das Interface "Stream<T>", welches Datenströme aus z.B. Listen  bereitstellen kann.
 */
 
+/**
+ * This class is responsible for reading files from the resources folder.
+ * The resources folder should be set as a source directory and marked as Resources
+ * in the project structure of IntelliJ or any other IDE being used.
+ */
+
 public class MyStreams2 {
 
     public static void main(String[] args) throws Exception {
@@ -115,9 +121,7 @@ public class MyStreams2 {
             List<String> liste = stream.collect(Collectors.toList());
             return liste;
         }
-
     }
-
 }
 
 
