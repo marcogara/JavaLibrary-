@@ -100,10 +100,6 @@ public class MyStreams2 {
      */
     private static List<String> readFileToList() throws Exception {
 
-        // Seit java8 verfügt Filers über die line()-Methode, mit der wir
-        // zeilenweise per Stream die Datei auslesen können
-        // Der Stream kann mit toList() ab Java 16 das Ergebnis in einer Liste verpacken
-
         URL url = MyStreams2.class.getResource("/FileStream.txt");
 
         // Variante 1
@@ -116,11 +112,12 @@ public class MyStreams2 {
 */
 
         // Variante 2
-        try(Stream<String> stream = Files.lines(Paths.get(url.toURI())))
-        {
-            List<String> liste = stream.collect(Collectors.toList());
-            return liste;
-        }
+            // Read lines from the file using Files.lines() since Java 8
+            try (Stream<String> stream = Files.lines(Paths.get(url.toURI()))) {
+                // Collect stream elements into a list using Collectors.toList() introduced in Java 8
+                List<String> liste = stream.collect(Collectors.toList());
+                return liste;
+            }
     }
 }
 
