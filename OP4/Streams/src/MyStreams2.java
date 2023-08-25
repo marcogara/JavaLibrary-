@@ -4,6 +4,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,7 +30,26 @@ public class MyStreams2 {
 
         //Erstellung einer Dummy-Datei
         saveDataToFile(generateDummyData());
-        System.out.println(readFileToString());
+        // System.out.println(readFileToString());
+
+
+        try {
+
+            String text = readFileToString();
+            System.out.println(text);
+            System.out.println("-------------------------------");
+
+            // Kommentare hinzufügen
+            List<String> liste = readFileToList();
+            liste.stream().forEach(System.out::println);
+
+            System.out.println("Größe der liste: " + liste.size());
+
+            toFilteredList(liste).forEach(System.out::println);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -112,14 +132,48 @@ public class MyStreams2 {
 */
 
         // Variante 2
-            // Read lines from the file using Files.lines() since Java 8
-            try (Stream<String> stream = Files.lines(Paths.get(url.toURI()))) {
-                // Collect stream elements into a list using Collectors.toList()
-                List<String> liste = stream.collect(Collectors.toList());
-                return liste;
-            }
+        // Read lines from the file using Files.lines() since Java 8
+        try (Stream<String> stream = Files.lines(Paths.get(url.toURI()))) {
+            // Collect stream elements into a list using Collectors.toList()
+            List<String> liste = stream.collect(Collectors.toList());
+            return liste;
+        }
     }
-}
+
+
+            private static List<String> toFilteredList(List<String> liste)
+            {
+                // Schritt 1: 5 Zeilen zerlegen -> Jedes Element in einer eigenen Zeile.
+                // Wir iterieren die Liste.
+                // Wenn wir jeden String splitten, bekommen wir ein Array, welches auch streamen kann.
+                // Wir iterieren das Array und geben jedes Element aus.
+                liste.forEach(e -> Arrays.stream(e.split(" ")).forEach(System.out::println));
+                System.out.println();
+
+                // Schritt 2: Filtern nach alphabetischen Werten.
+                // Wir wollen nur einzelne Großbuchstaben.
+                liste.forEach(e -> Arrays.stream(e.split(" "))
+                        .filter(f -> f.length() == 1 && Character.isAlphabetic(f.charAt(0)) && Character.isUpperCase(f.charAt(0)))
+                        .forEach(System.out::println));
+                // Erläuterung:
+                // Wir iterieren über die Liste mit forEach. Das heißt, jede einzelne Zeile des Textes. Für jedes Element der Liste (also jede Zeile) splitten für am Leerzeichen.
+                // Das Ergebnis davon ist ein Array.
+                // Wir iterieren über das Array als Stream und filtern dabei nach allen Elementen, die genau 1 Zeichen lang sind und Großbuchstaben sind.
+                // Der Filter liefert wieder einen Stream, über den wir iterieren können.
+                System.out.println();
+
+                // Schritt 3: Das Ergebnis in eine neue Liste schreiben.
+                List<String> result = new ArrayList<>();
+                liste.forEach(e -> Arrays.stream(e.split(" "))
+                        .filter(f -> f.length() == 1 && Character.isAlphabetic(f.charAt(0)) && Character.isUpperCase(f.charAt(0)))
+                        .forEach(result::add));
+
+                return result;
+            }
+
+        }
+
+
 
 
 
