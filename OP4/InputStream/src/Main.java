@@ -67,7 +67,6 @@ public class Main {
             e.printStackTrace();
         }*/
 
-
         //Alternative: FileWriter
        /* try(FileWriter writer = new FileWriter(file, true)){
 
@@ -80,7 +79,6 @@ public class Main {
         
         // Ab Java11 ist zulässig
         Files.writeString(path,data, StandardOpenOption.APPEND);
-
 
     }
 
