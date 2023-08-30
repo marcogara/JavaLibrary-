@@ -1,6 +1,5 @@
 package template;
 
-
 /*
  * Der Begriff Socket-Programmierung bezieht sich auf das Schreiben von
  * Programmen, die auf mehreren Computern ausgeführt werden, wobei die Programme
@@ -40,7 +39,6 @@ package template;
  * Standardhilfsmittel mit denen Server beliebige Services an eine große Zahl
  * von Clients verteilen.
  */
-
 
 import java.io.BufferedReader;
 import java.io.IOException;
