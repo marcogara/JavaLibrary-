@@ -1,0 +1,11 @@
+Erweitern Sie das Client-Server-Beispiel so, dass der Server in einer Schleife mehrere Befehle verarbeiten kann.
+Dazu soll auch der Client in der Lage sein, nacheinander Befehle an den Server schicken zu können.
+
+Befehle könnten zum Beispiel sein:
+Aktuelle Uhrzeit des Servers
+Working Directory des Servers
+Eine Auflistung der Dateien und Ordner im Verzeichnis des Servers
+
+
+Weitere mögliche Erweiterung des Programms:
+Der Server protokolliert alle empfangenen Befehle in einer Datei.
