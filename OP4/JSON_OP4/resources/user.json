@@ -1,0 +1,5 @@
+{
+  "name" : "Ein User",
+  "age" : 24,
+  "messages" : [ "Erste Nachricht", "zweite Nachricht" ]
+}

@@ -1,5 +1,6 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,19 +42,15 @@ public class JsonSerialisierung {
 
     public static void main(String[] args) {
 
-
-
         List<String> messages = new ArrayList<>();
-
-
+        messages.add("Erste Nachricht");
+        messages.add("zweite Nachricht");
         User user = new User("Ein User", 24,messages);
-
 
         javaObjectToJavaScriptObjet(user, "resources/user.json");
 
 
-
-
+        javaScripObjectToJavaObject("resources/user.json");
 
     }
 
@@ -70,21 +67,61 @@ public class JsonSerialisierung {
         ObjectMapper mapper = new ObjectMapper();
 
         try{
-                   // Der Mapper verwendet "Reflection", um aus einen angegebenen Object alle Attribute zu finden,
+            // Der Mapper verwendet "Reflection", um aus einem angegebenen Objekt alle Attribute zu finden,
+            // damit diese als JSON geschrieben werden können.
+            // Über Reflection: <u><link=https://www.baeldung.com/java-reflection>https://www.baeldung.com/java-reflection</link></u>
 
-            // Beispiele für Reflection
-            Method[] methods = user.getClass().getMethods();
+            // Beispiel für Reflection:
+            Method[] methods = user.getClass().getMethods();  // not needed for the working of the method
+            System.out.println(methods[0].invoke(user));    // not needed for the working of the method
+            System.out.println(Arrays.toString(methods));   // not needed for the working of the method
 
-            System.out.println(methods[0].invoke(user));
-            System.out.println(Arrays.toString(methods));
+            //WriteValue-Methode als direkter Aufruf alles in eine Zeile
+            //mapper.writeValue(Pfad newFile, user);
 
-
-
-
+            //Abhilfe schaffte PrettyPrinter
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(pfad),user);
+            String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(user);
+            System.out.println(json);
 
         }catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    private static User javaScripObjectToJavaObject(String pfad) {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        try{
+            // JSON aus einer Datei auslesen und in Java Object umwandeln
+            //Dazu muss der Datentyp des gewünscehten Objektes angegeben werden
+
+            User user = mapper.readValue(new File(pfad),User.class);
+
+                    String s = "{\n" +
+                    " \"name\" : \"Ein anderer User\",\n" +
+                    " \"age\" : 42, \n" +
+                    " \"messages\" : [\"Dies ist eine Nachricht\", \"Und noch eine Nachricht\"]\n" +
+                    "}";
+
+                    User user2 = mapper.readValue(s,User.class);
+            System.out.println(User.class);
+            System.out.println("aus der Datei gelesen: "+ user);
+            System.out.println("Aus der String gelesen : " + user2);
+            return user;
+
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+
+
 
     }
 }
