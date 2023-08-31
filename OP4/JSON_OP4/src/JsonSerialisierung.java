@@ -1,3 +1,8 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 // Ein JSON Tutorial
@@ -38,21 +43,51 @@ public class JsonSerialisierung {
 
 
 
+        List<String> messages = new ArrayList<>();
+
+
+        User user = new User("Ein User", 24,messages);
+
+
+        javaObjectToJavaScriptObjet(user, "resources/user.json");
+
+
+
+
+
     }
 
-
+    // Doku für ObjectMapper: <u><link=https://fasterxml.github.io/jackson-databind/javadoc/2.7/com/fasterxml/jackson/databind/ObjectMapper.html>https://fasterxml.github.io/jackson-databind/javadoc/2.7/com/fasterxml/jackson/databind/ObjectMapper.html</link></u>
+    /*
+     * Die einfache writeValue-Methode des ObjectMapper ist ein guter Einstiegspunkt.
+     * Wir können es verwenden, um ein Java-Objekt in JSON zu parsen oder zu serialisieren.
+     *
+     * Zum Lesen können wir die readValue-Methode verwenden,
+     * um jedes JSON in ein Java Objekt zu de-serialisieren.
+     */
     private static void javaObjectToJavaScriptObjet(User user,String pfad) {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        try{
+                   // Der Mapper verwendet "Reflection", um aus einen angegebenen Object alle Attribute zu finden,
+
+            // Beispiele für Reflection
+            Method[] methods = user.getClass().getMethods();
+
+            System.out.println(methods[0].invoke(user));
+            System.out.println(Arrays.toString(methods));
+
+
+
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }
-
-
-
-
-
-
-
-
 
 
 
