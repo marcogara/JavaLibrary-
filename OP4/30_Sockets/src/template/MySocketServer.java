@@ -106,13 +106,11 @@ public class MySocketServer
 
         // Eine Zeile Text aus dem InputStream lesen.
         String input = reader.readLine();
-        System.out.println(input); // Testweise ausgeben.
 
         if (input.equalsIgnoreCase("Hallo Server"))
             writer.println("Hallo Client");
         else
             writer.println("Unbekannte Anfrage");
-
     }
 
     // Ganz wichtig! Alle Streams und Sockets müssen geschlossen werden, wenn wir sie nicht mehr benötigen.
@@ -124,5 +122,4 @@ public class MySocketServer
         clientSocket.close();
         serverSocket.close();
     }
-
 }
