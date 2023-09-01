@@ -5,19 +5,29 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class MySocketClient
 {
     public static void main(String[] args)
     {
+
+        Scanner sc = new Scanner(System.in);
+
         MySocketClient client = new MySocketClient();
-        try
-        {
+        String nachricht;
+        try {
             client.connect("localhost", 1234);
-            String antwort = client.sendMessage("Hallo Server");
-            System.out.println("Antwort vom Server: " + antwort);
-        }
-        catch (Exception e)
+            do {
+                System.out.println("Bitte Message eingeben");
+
+                nachricht = sc.nextLine();
+                String antwort = client.sendMessage(nachricht);
+                System.out.println("Antwort vom Server: " + antwort);
+
+            } while (!nachricht.isBlank());
+
+        } catch (Exception e)
         {
             e.printStackTrace();
         }
@@ -46,8 +56,8 @@ public class MySocketClient
         if (clientSocket.isConnected())
             System.out.println("Verbunden");
 
-        System.out.println(clientSocket.getLocalAddress());
-        System.out.println(clientSocket.getRemoteSocketAddress());
+        // System.out.println(clientSocket.getLocalAddress());   not needed in code for Prüfung
+        // System.out.println(clientSocket.getRemoteSocketAddress());
 
         writer = new PrintWriter(clientSocket.getOutputStream(), true);
         reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -70,3 +80,4 @@ public class MySocketClient
         clientSocket.close();
     }
 }
+

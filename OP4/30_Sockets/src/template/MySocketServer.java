@@ -40,21 +40,27 @@ package template;
  * von Clients verteilen.
  */
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class MySocketServer
+
 {
+    static String input;
+    static BufferedWriter bf;
+
     public static void main(String[] args)
     {
         MySocketServer myServer = new MySocketServer();
         try
         {
             myServer.start(1234);
+            myServer.listen();
+            while(!input.isEmpty())
+            {
+                myServer.listen();
+            }
         }
         catch (Exception e)
         {
@@ -71,6 +77,24 @@ public class MySocketServer
                 e.printStackTrace();
             }
         }
+    }
+  // todo : muss ein Try with resources eingesetz werden.
+    private void listen() throws IOException {
+
+        writer = new PrintWriter(clientSocket.getOutputStream(), true);
+        reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
+        // Eine Zeile Text aus dem InputStream lesen.
+        input = reader.readLine();
+
+        BufferedWriter bf = new BufferedWriter(new FileWriter("resources/test.txt",true));
+        bf.write(input + "\n");
+        bf.close();
+
+        if (input.equalsIgnoreCase("Hallo Server"))
+            writer.println("Hallo Client");
+        else
+            writer.println("Unbekannte Anfrage");
     }
 
     private ServerSocket serverSocket; // Socket für den Server.
@@ -101,16 +125,8 @@ public class MySocketServer
         // Aus diesen Streams bilden wir Writer und Reader.
         // Hinweis: Damit der PrintWriter die Nachrichten sofort auf den Stream schreibt,
         // sollte autoFlush auf true gesetzt werden.
-        writer = new PrintWriter(clientSocket.getOutputStream(), true);
-        reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-        // Eine Zeile Text aus dem InputStream lesen.
-        String input = reader.readLine();
 
-        if (input.equalsIgnoreCase("Hallo Server"))
-            writer.println("Hallo Client");
-        else
-            writer.println("Unbekannte Anfrage");
     }
 
     // Ganz wichtig! Alle Streams und Sockets müssen geschlossen werden, wenn wir sie nicht mehr benötigen.
