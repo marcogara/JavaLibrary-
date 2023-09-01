@@ -49,9 +49,7 @@ public class JsonSerialisierung {
 
         javaObjectToJavaScriptObjet(user, "resources/user.json");
 
-
         javaScripObjectToJavaObject("resources/user.json");
-
     }
 
     // Doku für ObjectMapper: <u><link=https://fasterxml.github.io/jackson-databind/javadoc/2.7/com/fasterxml/jackson/databind/ObjectMapper.html>https://fasterxml.github.io/jackson-databind/javadoc/2.7/com/fasterxml/jackson/databind/ObjectMapper.html</link></u>
@@ -87,7 +85,6 @@ public class JsonSerialisierung {
         }catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     private static User javaScripObjectToJavaObject(String pfad) {
@@ -112,22 +109,12 @@ public class JsonSerialisierung {
             System.out.println("Aus der String gelesen : " + user2);
             return user;
 
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-
-
-
-
     }
 }
-
-
-
 
 class User {
 
