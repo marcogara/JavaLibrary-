@@ -59,3 +59,21 @@ sda
 hallo server
 
 Verbindung getrennt.
+hi
+hallo server
+hi
+hallo server
+hallo server
+hallo server
+hallo server
+hi
+hi
+hello server
+hi
+hello server
+hi
+hi
+hi
+hello server
+
+Verbindung getrennt.
