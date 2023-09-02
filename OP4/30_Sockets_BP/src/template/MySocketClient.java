@@ -7,11 +7,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-import java.io.*;
-import java.net.Socket;
-import java.util.Scanner;
+public class MySocketClient implements AutoCloseable {
 
-public class MySocketClient {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         MySocketClient client = new MySocketClient();
@@ -61,5 +58,18 @@ public class MySocketClient {
         reader.close();
         writer.close();
         clientSocket.close();
+    }
+
+    @Override
+    public void close() throws Exception {
+        if (reader != null) {
+            reader.close();
+        }
+        if (writer != null) {
+            writer.close();
+        }
+        if (clientSocket != null) {
+            clientSocket.close();
+        }
     }
 }
