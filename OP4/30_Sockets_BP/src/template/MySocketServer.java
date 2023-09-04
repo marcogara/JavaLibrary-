@@ -1,12 +1,13 @@
 package template;
 
 import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class MySocketServer {
@@ -47,21 +48,37 @@ public class MySocketServer {
     private static void handleClientCommunication(BufferedReader reader, PrintWriter writer) throws IOException {
         String input;
         Random random = new Random();
-        while ((input = reader.readLine()) != null) {
-            saveToProtocol(input);
-            if (input.equalsIgnoreCase("Hallo Server")) {
-                int randomIndex = random.nextInt(FUNNY_MESSAGES.length);
-                writer.println("Hallo Client. " + FUNNY_MESSAGES[randomIndex]);
-            } else {
-                int randomIndex = random.nextInt(FUNNY_MESSAGES.length);
-                writer.println("Unbekannte Anfrage. " + FUNNY_MESSAGES[randomIndex]);
+        while (true) {
+            try {
+                input = reader.readLine();
+                if (input == null) {
+                    // The client closed the connection, break out of the loop
+                    break;
+                }
+                saveToProtocol(input);
+                if (input.equalsIgnoreCase("Hallo Server")) {
+                    int randomIndex = random.nextInt(FUNNY_MESSAGES.length);
+                    writer.println("Hallo Client. " + FUNNY_MESSAGES[randomIndex]);
+                } else {
+                    int randomIndex = random.nextInt(FUNNY_MESSAGES.length);
+                    writer.println("Unbekannte Anfrage. " + FUNNY_MESSAGES[randomIndex]);
+                }
+            } catch (SocketException e) {
+                // Handle the socket exception, e.g., log it
+                System.out.println("Client connection closed unexpectedly.");
+                break;
             }
         }
     }
 
     private static void saveToProtocol(String input) throws IOException {
         try (BufferedWriter protocolWriter = new BufferedWriter(new FileWriter(PROTOCOL_FILE_PATH, true))) {
-            protocolWriter.write(input + "\n");
+            LocalDateTime dt = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+            // Format the LocalDateTime using the custom formatter
+            String formattedDateTime = dt.format(formatter);
+            protocolWriter.write(formattedDateTime + "      " + input + "\n");
         }
     }
 }
