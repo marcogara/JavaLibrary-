@@ -30,9 +30,9 @@ public class MySocketServer {
 
     private static void startServer() throws IOException {
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
-            System.out.println("Server gestartet. Wartet auf Verbindungen...");
+            System.out.println("Auf Client warten...");
             Socket clientSocket = serverSocket.accept();
-            System.out.println("Verbindungsanfrage angenommen.");
+            System.out.println("Client verbunden");
 
             try (
                     PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -41,6 +41,7 @@ public class MySocketServer {
                 handleClientCommunication(reader, writer);
             } finally {
                 saveToProtocol("Verbindung getrennt.");
+                System.out.println("Verbindung getrennt");
             }
         }
     }
@@ -65,7 +66,7 @@ public class MySocketServer {
                 }
             } catch (SocketException e) {
                 // Handle the socket exception, e.g., log it
-                System.out.println("Client connection closed unexpectedly.");
+                System.out.println("Die Clientverbindung wurde unerwartet geschlossen.");
                 break;
             }
         }
