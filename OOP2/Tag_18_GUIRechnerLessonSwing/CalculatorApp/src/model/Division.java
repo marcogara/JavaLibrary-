@@ -12,8 +12,6 @@ public class Division implements ArithmeticStrategy {
 
         BigDecimal resultDivide = n1.divide(n2, 15, RoundingMode.HALF_UP);
         double res = resultDivide.doubleValue();
-
-
         return res;
     }
 }
