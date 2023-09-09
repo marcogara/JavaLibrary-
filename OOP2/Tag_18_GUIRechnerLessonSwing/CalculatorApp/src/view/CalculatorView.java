@@ -29,7 +29,6 @@ public class CalculatorView {
     }
 
     private void createButtonPanel() {
-
         this.numberButtons = new JButton[10];
 
         for (int i = 0; i < 10; i++) {
@@ -37,7 +36,6 @@ public class CalculatorView {
             this.numberButtons[i].setFont(defaultFont);
             this.numberButtons[i].setFocusable(false);
             this.numberButtons[i].addActionListener(e -> writeToDisplay(e.getActionCommand()));
-
         }
 
         this.btn_addition = new JButton("+");
@@ -102,7 +100,6 @@ public class CalculatorView {
         this.pnl_buttons.setBounds(50, 100, 300, 300);
         this.pnl_buttons.setBackground(new Color(87, 118, 148));
         this.pnl_buttons.setLayout(new GridLayout(4, 4, 10, 10));
-
     }
 
     private void createCalculatorFrame() {
@@ -144,10 +141,8 @@ public class CalculatorView {
     }
 
     private void writeToDisplay(String content) {
-
         String text = this.concatInput(content);
         this.txt_display.setText(text);
-
     }
 
     private void deleteLastChar() {
@@ -163,7 +158,6 @@ public class CalculatorView {
     }
 
     private String concatInput(String text) {
-
         String buffer = txt_display.getText();
 
         if (buffer != null)
@@ -192,13 +186,11 @@ public class CalculatorView {
         this.btn_subtraction.addActionListener(arithmethicButtonClickListener);
         this.btn_addition.addActionListener(arithmethicButtonClickListener);
         this.btn_equals.addActionListener(arithmethicButtonClickListener);
-
     }
 
     public void writeResultToDisplay(String result) {
         this.txt_display.setText(result);
     }
-
 }
 
 
