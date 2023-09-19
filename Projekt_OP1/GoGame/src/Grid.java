@@ -7,8 +7,6 @@ public class Grid {
         fillUpGrid();
     }
 
-
-
     private void fillUpGrid() {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
@@ -34,7 +32,6 @@ public class Grid {
         int xMove= y;
         // System.out.println(yMove);
         grid[xMove-1][yMove-1] = 'X';
-
                 }
 
     public static void positionStoneO(char x, int y) {
@@ -44,8 +41,6 @@ public class Grid {
         int xMove= y;
         // System.out.println(yMove);
         grid[xMove-1][yMove-1] = 'O';
-
-
     }
 
 
@@ -64,5 +59,4 @@ public class Grid {
             System.out.println();
         }
     }
-
 }
