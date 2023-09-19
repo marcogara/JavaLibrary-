@@ -46,7 +46,6 @@ public class Stone {
         Grid.positionStoneX(xMove, yMove);
         Grid.printGrid();
         System.out.println();
-
     }
 
     public static void askMoveO() throws InterruptedException {
@@ -67,11 +66,8 @@ public class Stone {
         Grid.positionStoneO(xMove, yMove);
         Grid.printGrid();
         System.out.println();
-
     }
 }
-
-
 
 /*
     public static void move() {
@@ -79,28 +75,13 @@ public class Stone {
         int yMove;
         System.out.println("Play your first move give a letter first: ");
         
-        
         Scanner scanner = new Scanner(System.in);
         
         xMove = scanner.next().charAt(0);
         
-        
-        
-
-
         System.out.println("give a Number now: ");
         yMove = scanner.nextInt();
-
-
-
-
-
-
-
-
     }
-
-
 }
 
  */
