@@ -20,12 +20,8 @@ public class Aufgabe_0 {
                 System.out.println("Meine Einkaufsliste: ");
                 for (String s : einkaufsliste) {
                     System.out.println(s);
-
-
                 }
-                // System.out.println(einkaufsliste);
             }
-
         }
 
 
