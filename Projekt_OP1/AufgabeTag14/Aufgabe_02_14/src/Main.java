@@ -30,5 +30,5 @@ public class Main {
         for (GeraeuscherMacher namen : list ) {
             namen.macheGeraeuche();
         }
-        }
     }
+}
