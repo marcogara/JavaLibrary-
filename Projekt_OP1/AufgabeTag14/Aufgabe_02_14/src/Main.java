@@ -28,10 +28,7 @@ public class Main {
         list.add(mensch);
 
         for (GeraeuscherMacher namen : list ) {
-
             namen.macheGeraeuche();
-
         }
-
         }
     }
