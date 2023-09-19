@@ -37,14 +37,12 @@ public class Aufgabe_1 {
         sucheMatchLoop(ziffernliste);
         System.out.println("Zur Kontrolle hier neue List: ");
         ausgabeListe(ziffernliste);
-
     }
 
     public static void sucheMatchLoop(ArrayList<Integer> ziffernliste) {
         boolean boTreffer = false;
 
         do {
-
             int iEingabe = 0;
             System.out.println(" Bitte geben sie einen Zahl ein: ");
 
@@ -54,12 +52,9 @@ public class Aufgabe_1 {
                 if (iEingabe > 0) {                                    // check if value is valid
                     System.out.println("Input is a valid integer: " + iEingabe);
                     // check if value is inside the ZiffernList
-
                     if (ziffernliste.contains(iEingabe)) {
-
                         while (ziffernliste.contains(iEingabe)) {
                             System.out.println("The list contains " + iEingabe);
-
 
                             ziffernliste.remove(Integer.valueOf(iEingabe));
                         }
@@ -76,7 +71,6 @@ public class Aufgabe_1 {
                     System.out.println("Input must be greater than or equal to zero!");
                     continue;          // in case 0 or negative is given exit the do-while loop
                 }
-
             }catch(InputMismatchException e){
                     System.out.println("Invalid input! Please enter a valid integer.");
                 }
@@ -85,27 +79,22 @@ public class Aufgabe_1 {
                 continue;
 
             } while (!boTreffer) ;
-
         }
 
     public static void erstelleListe(ArrayList<Integer> ziffernliste) {
 
         Scanner scanner = new Scanner(System.in);
         do {
-
             int iEingabe =0;
             System.out.println(" Bitte geben sie einen Zahl ein: ");
 
-
             try {
-
                 iEingabe = scanner.nextInt();                         // try reading integer value from input stream
 
                 if (iEingabe > 0) {                                    // check if value is valid
                     System.out.println("Input is a valid integer: " + iEingabe);
                     // add some values to the list
                     ziffernliste.add(iEingabe);
-
                     continue; // continue prompting for more inputs
                 } else {                        // handle invalid inputs
                     System.out.println("Input must be greater than or equal to zero!");
@@ -119,7 +108,6 @@ public class Aufgabe_1 {
             continue;
 
         } while (true);
-
     }
 
     public static void ausgabeListe(ArrayList<Integer> ziffernliste) {
