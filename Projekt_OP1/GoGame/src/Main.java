@@ -6,15 +6,11 @@ public class Main {
 
     private void init() throws InterruptedException {
 
-
         // GameBoard board = new GameBoard();
         Grid grid1 = new Grid(9,9);
 
-
         while (true)
         {
-
-
             grid1.printGrid();
             System.out.println();
             Stone.askMoveX();
@@ -34,10 +30,7 @@ public class Main {
 
             break;
         }
-
-
-
-
-    }}
+    }
+}
 
 
